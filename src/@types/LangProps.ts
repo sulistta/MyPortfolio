@@ -1,1 +1,0 @@
-export type LangProps = 'en' | 'pt' | 'es';

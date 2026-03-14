@@ -1,1 +1,0 @@
-export type RoutesProps = { href: string; text: string | null, targetSegment: string | null }[]
