@@ -586,7 +586,7 @@ function HeroSection() {
             className="relative"
           >
             <h1 className="font-heading text-[15vw] md:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-tight text-ink-black">
-              ALEX
+              VÍTOR
             </h1>
             <motion.div
               className="absolute -bottom-2 left-0 h-4 md:h-6 bg-electric-yellow"
@@ -603,7 +603,7 @@ function HeroSection() {
             className="relative text-right -mt-4 md:-mt-8"
           >
             <h1 className="font-heading text-[15vw] md:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-tight text-ink-black">
-              RIVERA
+              DEV
             </h1>
             <motion.div
               className="absolute -bottom-2 right-0 h-4 md:h-6 bg-hot-magenta"
@@ -1403,7 +1403,7 @@ function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center md:text-left">
             <h3 className="font-heading text-3xl md:text-4xl">
-              ALEX <span className="text-electric-yellow">RIVERA</span>
+              VÍTOR <span className="text-electric-yellow">DEV</span>
             </h3>
             <p className="font-body text-sm text-gray-400 mt-2">Creative Developer &amp; Digital Artist</p>
           </motion.div>
