@@ -28,7 +28,7 @@ import type {
 } from "./portfolio-types";
 
 export const portfolioBrand = {
-  headerMark: "AR",
+  headerMark: "372",
   heroPrimaryHeading: "VÍTOR",
   heroSecondaryHeading: "DEV",
   heroRole: "Creative Developer",
@@ -52,7 +52,7 @@ export const portfolioNavigationLinks: PortfolioNavigationLink[] = [
 
 export const aboutSectionContent = {
   heading: "ABOUT ME",
-  profileMonogram: "AR",
+  profileMonogram: "372",
   introHighlight: "creative developer",
   experienceHighlight: "5+ years of experience",
   paragraphs: [
