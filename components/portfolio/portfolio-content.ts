@@ -28,7 +28,7 @@ import type {
 } from "./portfolio-types";
 
 export const portfolioBrand = {
-  headerMark: "372",
+  headerMark: "VÍTOR",
   heroPrimaryHeading: "VÍTOR",
   heroSecondaryHeading: "DEV",
   heroRole: "Creative Developer",
