@@ -1,4 +1,11 @@
-import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useTypewriterText } from "../hooks/use-typewriter-text";
@@ -9,6 +16,88 @@ import {
   scrollToSection,
 } from "../portfolio-utils";
 import { MagneticActionButton } from "../primitives/magnetic-action-button";
+
+const heroStickerDecorations = [
+  {
+    src: "/stickers/sticker_amarelo.png",
+    width: 590,
+    height: 574,
+    sizes: "(min-width: 1024px) 128px, (min-width: 768px) 112px, 76px",
+    style: { left: "7%", top: "12%", width: "clamp(4.75rem, 10vw, 8rem)" },
+    animate: { y: [0, -24, 0], rotate: [-8, 10, -8] },
+    transition: { duration: 5, repeat: Infinity, ease: "easeInOut" as const },
+  },
+  {
+    src: "/stickers/sticker_barra_rosa.png",
+    width: 856,
+    height: 413,
+    sizes: "(min-width: 1024px) 160px, (min-width: 768px) 136px, 96px",
+    style: { right: "23%", top: "14%", width: "clamp(6rem, 12vw, 10rem)" },
+    animate: { y: [0, 14, 0], rotate: [-6, -1, -6] },
+    transition: {
+      duration: 4.8,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+      delay: 0.2,
+    },
+  },
+  {
+    src: "/stickers/sticker_circulo_rosa.png",
+    width: 408,
+    height: 423,
+    sizes: "(min-width: 1024px) 96px, (min-width: 768px) 84px, 64px",
+    style: { right: "10%", top: "24%", width: "clamp(4rem, 7vw, 6rem)" },
+    animate: { y: [0, 18, 0], x: [0, -12, 0] },
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+      delay: 0.5,
+    },
+  },
+  {
+    src: "/stickers/sticker_seta_ciano.png",
+    width: 602,
+    height: 757,
+    sizes: "(min-width: 1024px) 112px, (min-width: 768px) 96px, 76px",
+    style: { left: "11%", bottom: "13%", width: "clamp(4.75rem, 8vw, 7rem)" },
+    animate: { y: [0, -18, 0], rotate: [-12, -4, -12] },
+    transition: {
+      duration: 5.8,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+      delay: 0.8,
+    },
+  },
+  {
+    src: "/stickers/sticker_rabisco_preto.png",
+    width: 588,
+    height: 551,
+    sizes: "(min-width: 1024px) 96px, (min-width: 768px) 80px, 56px",
+    style: { left: "62%", bottom: "15%", width: "clamp(3.5rem, 6vw, 6rem)" },
+    animate: { y: [0, 14, 0], x: [0, 8, 0], rotate: [-8, 2, -8] },
+    transition: {
+      duration: 4.4,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+      delay: 0.4,
+    },
+  },
+  {
+    src: "/stickers/sticker_zigzag_preto.png",
+    width: 391,
+    height: 538,
+    sizes: "(min-width: 1024px) 80px, (min-width: 768px) 72px, 52px",
+    style: { right: "8%", bottom: "26%", width: "clamp(3.25rem, 5vw, 5rem)" },
+    animate: { y: [0, -20, 0], rotate: [0, 8, 0] },
+    transition: {
+      duration: 4.7,
+      repeat: Infinity,
+      ease: "easeInOut" as const,
+      delay: 0.3,
+    },
+  },
+];
 
 export function PortfolioHeroSection() {
   const heroSectionReference = useRef<HTMLElement>(null);
@@ -51,41 +140,26 @@ export function PortfolioHeroSection() {
         className="pointer-events-none absolute inset-0"
         style={{ x: backgroundOffsetX, y: backgroundOffsetY }}
       >
-        <motion.div
-          className="absolute left-[10%] top-[15%] h-32 w-32 border-4 border-black bg-electric-yellow"
-          animate={{ y: [0, -30, 0], rotate: [0, 15, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute right-[15%] top-[25%] h-24 w-24 rounded-full border-4 border-black bg-hot-magenta"
-          animate={{ y: [0, 20, 0], x: [0, -15, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        />
-        <motion.div
-          className="absolute bottom-[20%] left-[20%] h-20 w-20 rotate-45 border-4 border-black bg-cyan-blast"
-          animate={{ rotate: [45, 90, 45], scale: [1, 1.1, 1] }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-        <motion.div
-          className="absolute bottom-[30%] right-[10%] h-40 w-16 border-4 border-black bg-transparent"
-          animate={{ y: [0, -25, 0] }}
-          transition={{
-            duration: 4.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.3,
-          }}
-        />
+        {heroStickerDecorations.map((heroSticker) => (
+          <motion.div
+            key={heroSticker.src}
+            className="absolute"
+            style={heroSticker.style}
+            animate={heroSticker.animate}
+            transition={heroSticker.transition}
+          >
+            <Image
+              src={heroSticker.src}
+              alt=""
+              aria-hidden="true"
+              width={heroSticker.width}
+              height={heroSticker.height}
+              sizes={heroSticker.sizes}
+              draggable={false}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </motion.div>
+        ))}
         <div
           className="absolute inset-0 opacity-5"
           style={{

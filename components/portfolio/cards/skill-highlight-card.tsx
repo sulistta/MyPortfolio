@@ -3,6 +3,28 @@ import { useState } from "react";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import type { SkillHighlight } from "../portfolio-types";
 
+function getContrastingTextColor(backgroundColor: string) {
+  const hexColor = backgroundColor.replace("#", "").trim();
+  const normalizedHexColor =
+    hexColor.length === 3
+      ? hexColor
+          .split("")
+          .map((hexDigit) => `${hexDigit}${hexDigit}`)
+          .join("")
+      : hexColor;
+
+  if (normalizedHexColor.length !== 6) {
+    return "#000";
+  }
+
+  const red = Number.parseInt(normalizedHexColor.slice(0, 2), 16);
+  const green = Number.parseInt(normalizedHexColor.slice(2, 4), 16);
+  const blue = Number.parseInt(normalizedHexColor.slice(4, 6), 16);
+  const luminance = (red * 299 + green * 587 + blue * 114) / 1000;
+
+  return luminance >= 140 ? "#000" : "#FFF";
+}
+
 type SkillHighlightCardProps = {
   skillHighlight: SkillHighlight;
   animationDelay: number;
@@ -18,6 +40,7 @@ export function SkillHighlightCard({
 }: SkillHighlightCardProps) {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const SkillIcon = skillHighlight.icon;
+  const hoveredIconColor = getContrastingTextColor(skillHighlight.color);
 
   return (
     <motion.div
@@ -50,7 +73,7 @@ export function SkillHighlightCard({
         >
           <SkillIcon
             className="h-6 w-6 transition-colors duration-200 md:h-7 md:w-7"
-            style={{ color: isCardHovered ? "#000" : skillHighlight.color }}
+            style={{ color: isCardHovered ? hoveredIconColor : skillHighlight.color }}
           />
         </div>
 

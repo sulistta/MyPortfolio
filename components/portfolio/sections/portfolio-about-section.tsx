@@ -1,10 +1,18 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { aboutSectionContent, careerStats, portfolioBrand } from "../portfolio-content";
-import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
+import {
+  aboutSectionContent,
+  careerStats,
+  portfolioBrand,
+} from "../portfolio-content";
+import {
+  portfolioEntranceEase,
+  portfolioRevealViewport,
+} from "../portfolio-motion";
 import { PORTFOLIO_CONTAINER_CLASS_NAME } from "../portfolio-utils";
 import { AnimatedStatCounter } from "../primitives/animated-stat-counter";
-
+import { stickerAssetPaths } from "@/public/stickers";
+import Image from "next/image";
 function renderHighlightedParagraph(
   paragraphText: string,
   highlightText: string,
@@ -35,7 +43,11 @@ export function PortfolioAboutSection() {
     target: aboutSectionReference,
     offset: ["start end", "end start"],
   });
-  const portraitColumnOffset = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const portraitColumnOffset = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [100, -100],
+  );
 
   return (
     <section
@@ -79,8 +91,20 @@ export function PortfolioAboutSection() {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute right-4 top-4 h-8 w-8 border-2 border-black bg-hot-magenta" />
-                  <div className="absolute bottom-4 left-4 h-12 w-12 rotate-12 border-2 border-black bg-cyan-blast" />
+                  <Image
+                    src={stickerAssetPaths.circuloRosa}
+                    alt="Circulo Rosa Sticker"
+                    width={80}
+                    height={80}
+                    className="absolute right-4 top-4 h-8 w-8"
+                  />
+                  <Image
+                    src={stickerAssetPaths.amarelo}
+                    alt="Amarelo Sticker"
+                    width={120}
+                    height={120}
+                    className="absolute bottom-4 left-4 h-12 w-12 rotate-12"
+                  />
                 </div>
               </div>
 
@@ -101,27 +125,33 @@ export function PortfolioAboutSection() {
 
           <div className="lg:col-span-7">
             <motion.h2 className="mb-8 font-heading text-5xl text-ink-black md:text-6xl lg:text-7xl">
-              {aboutSectionContent.heading.split("").map((character, characterIndex) => (
-                <motion.span
-                  key={`${character}-${characterIndex}`}
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined}
-                  transition={{
-                    duration: 0.05,
-                    delay: 0.2 + characterIndex * 0.05,
-                    ease: portfolioEntranceEase,
-                  }}
-                  className="inline-block"
-                >
-                  {character === " " ? "\u00a0" : character}
-                </motion.span>
-              ))}
+              {aboutSectionContent.heading
+                .split("")
+                .map((character, characterIndex) => (
+                  <motion.span
+                    key={`${character}-${characterIndex}`}
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={
+                      isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
+                    }
+                    transition={{
+                      duration: 0.05,
+                      delay: 0.2 + characterIndex * 0.05,
+                      ease: portfolioEntranceEase,
+                    }}
+                    className="inline-block"
+                  >
+                    {character === " " ? "\u00a0" : character}
+                  </motion.span>
+                ))}
             </motion.h2>
 
             <div className="space-y-6">
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
-                animate={isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined}
+                animate={
+                  isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
+                }
                 transition={{ delay: 0.4, duration: 0.4 }}
                 className="font-body text-lg leading-relaxed text-dark-gray"
               >
@@ -134,7 +164,9 @@ export function PortfolioAboutSection() {
 
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
-                animate={isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined}
+                animate={
+                  isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
+                }
                 transition={{ delay: 0.5, duration: 0.4 }}
                 className="font-body text-lg leading-relaxed text-dark-gray"
               >
@@ -147,7 +179,9 @@ export function PortfolioAboutSection() {
 
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
-                animate={isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined}
+                animate={
+                  isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
+                }
                 transition={{ delay: 0.6, duration: 0.4 }}
                 className="font-body text-lg leading-relaxed text-dark-gray"
               >

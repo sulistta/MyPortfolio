@@ -58,8 +58,8 @@ export function PortfolioFooter() {
           className="flex flex-col items-center justify-between gap-4 text-sm text-gray-400 md:flex-row"
         >
           <p className="font-body">
-            &copy; {new Date().getFullYear()} {portfolioBrand.footerPrimaryLabel}. All rights
-            reserved.
+            &copy; {new Date().getFullYear()}{" "}
+            {portfolioBrand.footerPrimaryLabel}. All rights reserved.
           </p>
           <p className="flex items-center gap-2 font-body">
             Made with
@@ -74,13 +74,13 @@ export function PortfolioFooter() {
         </motion.div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 w-full overflow-hidden">
+      <div className="pointer-events-none absolute bottom-0 text-[15vw] left-0 w-full overflow-hidden">
         <motion.p
           initial={{ x: "-100%" }}
-          whileInView={{ x: "0%" }}
+          whileInView={{ x: "4%" }}
           viewport={{ once: true }}
           transition={{ duration: 2, ease: "easeOut" }}
-          className="whitespace-nowrap font-heading text-[20vw] leading-none text-white opacity-[0.02]"
+          className="whitespace-nowrap font-heading  leading-none text-white opacity-[0.02]"
         >
           {portfolioBrand.footerBackgroundWord}
         </motion.p>

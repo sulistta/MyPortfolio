@@ -40,7 +40,7 @@ export const portfolioBrand = {
   footerPrimaryLabel: "VÍTOR",
   footerAccentLabel: "DEV",
   footerSubtitle: "Creative Developer & Digital Artist",
-  footerBackgroundWord: "Vítor Dev",
+  footerBackgroundWord: "VÍTOR DEV",
 } as const;
 
 export const portfolioNavigationLinks: PortfolioNavigationLink[] = [
@@ -96,8 +96,18 @@ export const technicalSkills: SkillHighlight[] = [
   { name: "Next.js", icon: SiNextdotjs, color: "#000000", proficiency: 88 },
   { name: "Node.js", icon: SiNodedotjs, color: "#FF006E", proficiency: 85 },
   { name: "Three.js", icon: SiThreedotjs, color: "#00F5FF", proficiency: 80 },
-  { name: "GSAP", icon: FaWandMagicSparkles, color: "#FFE900", proficiency: 85 },
-  { name: "Tailwind", icon: RiTailwindCssFill, color: "#00F5FF", proficiency: 95 },
+  {
+    name: "GSAP",
+    icon: FaWandMagicSparkles,
+    color: "#FFE900",
+    proficiency: 85,
+  },
+  {
+    name: "Tailwind",
+    icon: RiTailwindCssFill,
+    color: "#00F5FF",
+    proficiency: 95,
+  },
   { name: "Figma", icon: SiFigma, color: "#FF006E", proficiency: 75 },
   { name: "Git", icon: SiGit, color: "#FFE900", proficiency: 90 },
   { name: "GraphQL", icon: SiGraphql, color: "#FF006E", proficiency: 70 },
@@ -146,7 +156,7 @@ export const socialProfileLinks: SocialProfileLink[] = [
 export const contactDetails: ContactDetail[] = [
   {
     label: "EMAIL",
-    value: "hello@alexrivera.dev",
+    value: "uvitor372@gmail.com",
     icon: Mail,
     iconContainerClassName: "bg-electric-yellow",
   },
