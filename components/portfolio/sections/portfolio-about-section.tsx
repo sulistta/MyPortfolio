@@ -54,6 +54,7 @@ export function PortfolioAboutSection() {
       id="about"
       ref={aboutSectionReference}
       className="relative overflow-hidden bg-soft-cream py-24 md:py-32 lg:py-40"
+      style={{ scrollMarginTop: 112 }}
     >
       <div className="absolute right-0 top-0 h-full w-1/3 -skew-x-12 translate-x-1/4 bg-electric-yellow/10" />
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { ArrowUp } from "lucide-react";
 import { useRef } from "react";
@@ -29,6 +30,7 @@ export function FeaturedProjectsSection() {
       id="projects"
       ref={featuredProjectsSectionReference}
       className="relative overflow-hidden bg-charcoal py-24 md:py-32 lg:py-40"
+      style={{ scrollMarginTop: 112 }}
     >
       <motion.div
         className="absolute inset-0 opacity-20"
@@ -76,7 +78,10 @@ export function FeaturedProjectsSection() {
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           {featuredProjects.map((featuredProject, projectIndex) => (
-            <div key={featuredProject.title} className={featuredProject.layoutClassName}>
+            <div
+              key={featuredProject.title}
+              className={featuredProject.featuredLayoutClassName ?? ""}
+            >
               <FeaturedProjectCard
                 featuredProject={featuredProject}
                 cardIndex={projectIndex}
@@ -92,16 +97,15 @@ export function FeaturedProjectsSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="mt-16 text-center md:mt-24"
         >
-          <motion.button
-            type="button"
-            aria-disabled="true"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
-          >
-            {featuredProjectsSectionContent.secondaryActionLabel}
-            <ArrowUp className="h-5 w-5 rotate-90" />
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
+            >
+              {featuredProjectsSectionContent.secondaryActionLabel}
+              <ArrowUp className="h-5 w-5 rotate-90" />
+            </Link>
+          </motion.div>
         </motion.div>
       </div>
     </section>

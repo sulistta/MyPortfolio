@@ -19,14 +19,46 @@ export type SkillHighlight = {
   proficiency: number;
 };
 
-export type FeaturedProject = {
+export type ProjectCategory =
+  | "Web Experience"
+  | "Creative Coding"
+  | "Dashboard"
+  | "UI System";
+
+export type ProjectPreviewVariant =
+  | "orbit"
+  | "grid"
+  | "bars"
+  | "signal"
+  | "stack";
+
+export type ProjectAvailability = "live" | "private" | "concept";
+
+export type PortfolioProject = {
+  id: string;
+  slug: string;
   title: string;
+  summary: string;
   description: string;
+  year: string;
+  category: ProjectCategory;
   technologies: string[];
   backgroundColor: string;
   accentColor: string;
-  previewVariant: "orbit" | "grid" | "bars";
-  layoutClassName: string;
+  previewVariant: ProjectPreviewVariant;
+  availability: ProjectAvailability;
+  isFeatured: boolean;
+  featuredLayoutClassName?: string;
+  liveUrl?: string;
+  repoUrl?: string;
+  caseStudyUrl?: string;
+};
+
+export type FeaturedProject = PortfolioProject;
+
+export type ProjectFilterOption = {
+  label: "All" | ProjectCategory;
+  accentColor: string;
 };
 
 export type SocialProfileLink = {

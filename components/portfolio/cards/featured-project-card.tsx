@@ -1,93 +1,16 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Code2, Eye } from "lucide-react";
+import { Code2, Eye, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
-import { MagneticActionButton } from "../primitives/magnetic-action-button";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
-import type { FeaturedProject } from "../portfolio-types";
+import type { PortfolioProject } from "../portfolio-types";
+import { ProjectActionLink } from "../primitives/project-action-link";
+import { PortfolioProjectPreviewArtwork } from "../primitives/portfolio-project-preview-artwork";
 
 type FeaturedProjectCardProps = {
-  featuredProject: FeaturedProject;
+  featuredProject: PortfolioProject;
   cardIndex: number;
 };
-
-type ProjectPreviewArtworkProps = Pick<
-  FeaturedProject,
-  "accentColor" | "previewVariant"
->;
-
-function ProjectPreviewArtwork({
-  accentColor,
-  previewVariant,
-}: ProjectPreviewArtworkProps) {
-  if (previewVariant === "orbit") {
-    return (
-      <>
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="h-40 w-40 rounded-full border-4 border-black"
-          style={{ borderColor: accentColor }}
-        />
-        <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 m-auto h-32 w-32 rounded-full border-4 border-white"
-        />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-heading text-4xl text-white">3D</span>
-        </div>
-      </>
-    );
-  }
-
-  if (previewVariant === "grid") {
-    return (
-      <div className="grid grid-cols-3 gap-2">
-        {Array.from({ length: 9 }).map((_, gridBlockIndex) => (
-          <motion.div
-            key={gridBlockIndex}
-            animate={{
-              scale: [1, 1.2, 1],
-              backgroundColor: [accentColor, "#fff", accentColor],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              delay: gridBlockIndex * 0.1,
-            }}
-            className="h-8 w-8 border-2 border-black"
-          />
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <motion.div
-        animate={{ height: [40, 80, 40] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="mx-1 inline-block w-4 border-2 border-black bg-white"
-      />
-      <motion.div
-        animate={{ height: [60, 30, 60] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-        className="mx-1 inline-block w-4 border-2 border-black bg-white"
-      />
-      <motion.div
-        animate={{ height: [30, 70, 30] }}
-        transition={{ duration: 2.5, repeat: Infinity }}
-        className="mx-1 inline-block w-4 border-2 border-black bg-white"
-      />
-      <motion.div
-        animate={{ height: [50, 40, 50] }}
-        transition={{ duration: 1.8, repeat: Infinity }}
-        className="mx-1 inline-block w-4 border-2 border-black bg-white"
-      />
-    </>
-  );
-}
 
 export function FeaturedProjectCard({
   featuredProject,
@@ -168,7 +91,7 @@ export function FeaturedProjectCard({
               className="absolute inset-0 flex items-center justify-center"
             >
               <div className="relative">
-                <ProjectPreviewArtwork
+                <PortfolioProjectPreviewArtwork
                   previewVariant={featuredProject.previewVariant}
                   accentColor={featuredProject.accentColor}
                 />
@@ -180,35 +103,49 @@ export function FeaturedProjectCard({
               transition={{ duration: 0.3 }}
               className="absolute inset-0 flex items-center justify-center bg-black"
             >
-              <div className="flex gap-4">
-                <MagneticActionButton
-                  type="button"
+              <div className="flex flex-wrap justify-center gap-4 px-6">
+                <ProjectActionLink
+                  href={featuredProject.liveUrl}
+                  label="VIEW"
+                  icon={Eye}
                   className="border-4 border-white bg-white px-6 py-3 font-accent font-bold text-black transition-colors hover:bg-electric-yellow"
-                >
-                  <span className="flex items-center gap-2">
-                    <Eye className="h-5 w-5" />
-                    VIEW
-                  </span>
-                </MagneticActionButton>
-                <MagneticActionButton
-                  type="button"
+                  disabledClassName="border-4 border-white bg-white px-6 py-3 font-accent font-bold text-black pointer-events-none"
+                />
+                <ProjectActionLink
+                  href={featuredProject.repoUrl}
+                  label="CODE"
+                  icon={Code2}
                   className="border-4 border-white bg-transparent px-6 py-3 font-accent font-bold text-white transition-colors hover:bg-white hover:text-black"
-                >
-                  <span className="flex items-center gap-2">
-                    <Code2 className="h-5 w-5" />
-                    CODE
-                  </span>
-                </MagneticActionButton>
+                  disabledClassName="border-4 border-white bg-transparent px-6 py-3 font-accent font-bold text-white pointer-events-none"
+                />
+                <ProjectActionLink
+                  href={featuredProject.caseStudyUrl}
+                  label="CASE"
+                  icon={FileText}
+                  className="border-4 border-white bg-hot-magenta px-6 py-3 font-accent font-bold text-white transition-colors hover:bg-electric-yellow hover:text-black"
+                  disabledClassName="border-4 border-white bg-hot-magenta px-6 py-3 font-accent font-bold text-white pointer-events-none"
+                />
               </div>
             </motion.div>
           </div>
 
           <div className="p-6">
+            <div className="mb-4 flex flex-wrap items-center gap-2">
+              <span
+                className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider"
+                style={{ backgroundColor: `${featuredProject.accentColor}20` }}
+              >
+                {featuredProject.category}
+              </span>
+              <span className="font-accent text-xs tracking-wider text-light-gray">
+                {featuredProject.year}
+              </span>
+            </div>
             <h3 className="mb-2 font-heading text-2xl text-ink-black md:text-3xl">
               {featuredProject.title}
             </h3>
             <p className="mb-4 font-body text-sm leading-relaxed text-light-gray">
-              {featuredProject.description}
+              {featuredProject.summary}
             </p>
             <div className="flex flex-wrap gap-2">
               {featuredProject.technologies.map((technologyLabel) => (
@@ -223,6 +160,9 @@ export function FeaturedProjectCard({
                 </span>
               ))}
             </div>
+            <p className="mt-4 font-body text-sm leading-relaxed text-dark-gray">
+              {featuredProject.description}
+            </p>
           </div>
 
           <div

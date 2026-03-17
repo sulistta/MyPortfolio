@@ -24,6 +24,7 @@ export function TechnicalSkillsSection() {
       id="skills"
       ref={skillsSectionReference}
       className="relative overflow-hidden bg-off-white py-24 md:py-32"
+      style={{ scrollMarginTop: 112 }}
     >
       <div
         className="absolute inset-0 opacity-5"

@@ -51,6 +51,7 @@ export function PortfolioContactSection() {
       id="contact"
       ref={contactSectionReference}
       className="relative overflow-hidden bg-off-white py-24 md:py-32 lg:py-40"
+      style={{ scrollMarginTop: 112 }}
     >
       <div className="absolute left-0 top-0 h-2 w-full bg-gradient-to-r from-electric-yellow via-hot-magenta to-cyan-blast" />
 
