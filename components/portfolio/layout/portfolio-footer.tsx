@@ -3,8 +3,9 @@ import { ArrowUp, Heart } from "lucide-react";
 import { portfolioBrand } from "../portfolio-content";
 import {
   PORTFOLIO_CONTAINER_CLASS_NAME,
-  scrollPageToTop,
-} from "../portfolio-utils";
+  portfolioButtonClassNames,
+} from "../portfolio-styles";
+import { scrollPageToTop } from "../portfolio-utils";
 import { MagneticActionButton } from "../primitives/magnetic-action-button";
 
 export function PortfolioFooter() {
@@ -34,7 +35,7 @@ export function PortfolioFooter() {
           <MagneticActionButton
             type="button"
             onClick={scrollPageToTop}
-            className="group border-4 border-white bg-transparent px-6 py-3 transition-colors duration-200 hover:bg-white hover:text-black"
+            className={portfolioButtonClassNames.footerGhost}
             magnetStrength={0.4}
           >
             <span className="flex items-center gap-2 font-accent font-bold tracking-wider">

@@ -10,7 +10,14 @@ import {
   portfolioEntranceEase,
   portfolioRevealViewport,
 } from "../portfolio-motion";
-import { PORTFOLIO_CONTAINER_CLASS_NAME } from "../portfolio-utils";
+import {
+  PORTFOLIO_GRID_PATTERN_DARK_STYLE,
+  PORTFOLIO_SECTION_SCROLL_STYLE,
+  featuredProjectLayoutClassNames,
+  portfolioButtonClassNames,
+  portfolioLayoutClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
 import { FeaturedProjectCard } from "../cards/featured-project-card";
 
 export function FeaturedProjectsSection() {
@@ -29,8 +36,8 @@ export function FeaturedProjectsSection() {
     <section
       id="projects"
       ref={featuredProjectsSectionReference}
-      className="relative overflow-hidden bg-charcoal py-24 md:py-32 lg:py-40"
-      style={{ scrollMarginTop: 112 }}
+      className={portfolioLayoutClassNames.darkSection}
+      style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
       <motion.div
         className="absolute inset-0 opacity-20"
@@ -44,31 +51,24 @@ export function FeaturedProjectsSection() {
           }}
         />
       </motion.div>
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
+      <div className="absolute inset-0 opacity-10" style={PORTFOLIO_GRID_PATTERN_DARK_STYLE} />
 
-      <div className={`relative z-10 ${PORTFOLIO_CONTAINER_CLASS_NAME}`}>
+      <div className={portfolioLayoutClassNames.contentContainer}>
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={
             isFeaturedProjectsSectionVisible ? { x: 0, opacity: 1 } : undefined
           }
           transition={{ duration: 0.6, ease: portfolioEntranceEase }}
-          className="mb-16 md:mb-24"
+          className={portfolioLayoutClassNames.sectionIntro}
         >
-          <div className="mb-4 flex items-center gap-4">
+          <div className={portfolioLayoutClassNames.kickerRow}>
             <div className="h-1 w-16 bg-electric-yellow" />
-            <span className="font-accent text-sm tracking-[0.2em] text-gray-400">
+            <span className={portfolioTypographyClassNames.kickerOnDark}>
               {featuredProjectsSectionContent.kicker}
             </span>
           </div>
-          <h2 className="font-heading text-5xl text-white md:text-6xl lg:text-8xl">
+          <h2 className={portfolioTypographyClassNames.darkSectionTitle}>
             {featuredProjectsSectionContent.title}
             <span className="block text-electric-yellow">
               {featuredProjectsSectionContent.highlightedTitle}
@@ -80,7 +80,11 @@ export function FeaturedProjectsSection() {
           {featuredProjects.map((featuredProject, projectIndex) => (
             <div
               key={featuredProject.title}
-              className={featuredProject.featuredLayoutClassName ?? ""}
+              className={
+                featuredProject.featuredLayout
+                  ? featuredProjectLayoutClassNames[featuredProject.featuredLayout]
+                  : ""
+              }
             >
               <FeaturedProjectCard
                 featuredProject={featuredProject}
@@ -100,7 +104,7 @@ export function FeaturedProjectsSection() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
+              className={portfolioButtonClassNames.darkGhost}
             >
               {featuredProjectsSectionContent.secondaryActionLabel}
               <ArrowUp className="h-5 w-5 rotate-90" />

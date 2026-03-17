@@ -8,6 +8,7 @@ import { PortfolioHeroSection } from "../sections/portfolio-hero-section";
 import { TechnicalSkillsSection } from "../sections/technical-skills-section";
 import { PageScrollProgressBar } from "../primitives/page-scroll-progress-bar";
 import { PortfolioCursorTrail } from "../primitives/portfolio-cursor-trail";
+import { portfolioLayoutClassNames } from "../portfolio-styles";
 
 export function PortfolioExperienceShell() {
   return (
@@ -15,7 +16,7 @@ export function PortfolioExperienceShell() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="relative noise-overlay"
+      className={portfolioLayoutClassNames.shell}
     >
       <PortfolioCursorTrail />
       <PageScrollProgressBar />

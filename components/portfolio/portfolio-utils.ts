@@ -1,13 +1,17 @@
-export const PORTFOLIO_CONTAINER_CLASS_NAME =
-  "max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20";
+export {
+  PORTFOLIO_CONTAINER_CLASS_NAME,
+  PORTFOLIO_SECTION_SCROLL_STYLE,
+} from "./portfolio-styles";
+import { PORTFOLIO_FIXED_HEADER_OFFSET } from "./portfolio-styles";
 
 export function scrollToSection(sectionId: string) {
   const sectionElement = document.getElementById(sectionId);
 
   if (sectionElement) {
-    const fixedHeaderOffset = 112;
     const sectionTop =
-      window.scrollY + sectionElement.getBoundingClientRect().top - fixedHeaderOffset;
+      window.scrollY +
+      sectionElement.getBoundingClientRect().top -
+      PORTFOLIO_FIXED_HEADER_OFFSET;
 
     window.scrollTo({
       top: Math.max(sectionTop, 0),

@@ -3,6 +3,10 @@ import { Code2, Eye, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
+import {
+  portfolioSurfaceClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
 import { PortfolioProjectPreviewArtwork } from "../primitives/portfolio-project-preview-artwork";
@@ -79,7 +83,7 @@ export function FeaturedProjectCard({
               : "8px 8px 0px #000",
           }}
           transition={{ duration: 0.3 }}
-          className="relative overflow-hidden border-4 border-black bg-white"
+          className={`relative overflow-hidden ${portfolioSurfaceClassNames.panel}`}
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
@@ -108,22 +112,22 @@ export function FeaturedProjectCard({
                   href={featuredProject.liveUrl}
                   label="VIEW"
                   icon={Eye}
-                  className="border-4 border-white bg-white px-6 py-3 font-accent font-bold text-black transition-colors hover:bg-electric-yellow"
-                  disabledClassName="border-4 border-white bg-white px-6 py-3 font-accent font-bold text-black pointer-events-none"
+                  surface="light"
+                  variant="primary"
                 />
                 <ProjectActionLink
                   href={featuredProject.repoUrl}
                   label="CODE"
                   icon={Code2}
-                  className="border-4 border-white bg-transparent px-6 py-3 font-accent font-bold text-white transition-colors hover:bg-white hover:text-black"
-                  disabledClassName="border-4 border-white bg-transparent px-6 py-3 font-accent font-bold text-white pointer-events-none"
+                  surface="light"
+                  variant="secondary"
                 />
                 <ProjectActionLink
                   href={featuredProject.caseStudyUrl}
                   label="CASE"
                   icon={FileText}
-                  className="border-4 border-white bg-hot-magenta px-6 py-3 font-accent font-bold text-white transition-colors hover:bg-electric-yellow hover:text-black"
-                  disabledClassName="border-4 border-white bg-hot-magenta px-6 py-3 font-accent font-bold text-white pointer-events-none"
+                  surface="light"
+                  variant="accent"
                 />
               </div>
             </motion.div>
@@ -132,26 +136,28 @@ export function FeaturedProjectCard({
           <div className="p-6">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span
-                className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider"
+                className={portfolioSurfaceClassNames.tag}
                 style={{ backgroundColor: `${featuredProject.accentColor}20` }}
               >
                 {featuredProject.category}
               </span>
-              <span className="font-accent text-xs tracking-wider text-light-gray">
+              <span className={portfolioTypographyClassNames.metaLabel}>
                 {featuredProject.year}
               </span>
             </div>
-            <h3 className="mb-2 font-heading text-2xl text-ink-black md:text-3xl">
+            <h3
+              className={`mb-2 ${portfolioTypographyClassNames.featuredCardTitle}`}
+            >
               {featuredProject.title}
             </h3>
-            <p className="mb-4 font-body text-sm leading-relaxed text-light-gray">
+            <p className={`mb-4 ${portfolioTypographyClassNames.cardSummary}`}>
               {featuredProject.summary}
             </p>
             <div className="flex flex-wrap gap-2">
               {featuredProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider"
+                  className={portfolioSurfaceClassNames.tag}
                   style={{
                     backgroundColor: `${featuredProject.accentColor}20`,
                   }}
@@ -160,13 +166,13 @@ export function FeaturedProjectCard({
                 </span>
               ))}
             </div>
-            <p className="mt-4 font-body text-sm leading-relaxed text-dark-gray">
+            <p className={`mt-4 ${portfolioTypographyClassNames.cardDescription}`}>
               {featuredProject.description}
             </p>
           </div>
 
           <div
-            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
+            className={portfolioSurfaceClassNames.accentCorner}
             style={{
               borderTopColor: featuredProject.accentColor,
               borderLeftColor: "transparent",

@@ -10,9 +10,10 @@ import {
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
   PORTFOLIO_CONTAINER_CLASS_NAME,
-  scrollPageToTop,
-  scrollToSectionFromHref,
-} from "../portfolio-utils";
+  cn,
+  portfolioButtonClassNames,
+} from "../portfolio-styles";
+import { scrollPageToTop, scrollToSectionFromHref } from "../portfolio-utils";
 import { MagneticActionButton } from "../primitives/magnetic-action-button";
 
 export function PortfolioHeader() {
@@ -53,11 +54,12 @@ export function PortfolioHeader() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: portfolioEntranceEase }}
-        className={`fixed left-0 right-0 top-0 z-[99] transition-all duration-300 ${
+        className={cn(
+          "fixed left-0 right-0 top-0 z-[99] transition-all duration-300",
           hasPageScrolled
             ? "border-b-4 border-black bg-off-white/90 backdrop-blur-md"
-            : "bg-transparent"
-        }`}
+            : "bg-transparent",
+        )}
       >
         <div className={PORTFOLIO_CONTAINER_CLASS_NAME}>
           <div className="flex h-20 items-center justify-between">
@@ -144,7 +146,7 @@ export function PortfolioHeader() {
                 <MagneticActionButton
                   type="button"
                   onClick={() => handleSectionNavigation("#contact")}
-                  className="border-4 border-black bg-black px-5 py-2 font-accent text-sm tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black"
+                  className={portfolioButtonClassNames.navPrimary}
                 >
                   {portfolioBrand.primaryNavigationActionLabel}
                 </MagneticActionButton>
@@ -153,7 +155,7 @@ export function PortfolioHeader() {
                   <Link
                     href="/#contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="inline-flex border-4 border-black bg-black px-5 py-2 font-accent text-sm tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black"
+                    className={cn("inline-flex", portfolioButtonClassNames.navPrimary)}
                   >
                     {portfolioBrand.primaryNavigationActionLabel}
                   </Link>
@@ -230,11 +232,12 @@ export function PortfolioHeader() {
                         navigationLink.label,
                       )}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`font-heading text-4xl transition-colors ${
+                      className={cn(
+                        "font-heading text-4xl transition-colors",
                         isCurrentProjectsPage
                           ? "text-hot-magenta"
-                          : "text-ink-black hover:text-hot-magenta"
-                      }`}
+                          : "text-ink-black hover:text-hot-magenta",
+                      )}
                     >
                       {navigationLink.label}
                     </Link>
@@ -249,7 +252,7 @@ export function PortfolioHeader() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 }}
                   onClick={() => handleSectionNavigation("#contact")}
-                  className="mt-8 border-4 border-black bg-hot-magenta px-8 py-4 font-accent text-xl font-bold tracking-wider text-white shadow-brutal"
+                  className={cn("mt-8", portfolioButtonClassNames.accent)}
                 >
                   {portfolioBrand.primaryNavigationActionLabel}
                 </motion.button>
@@ -262,7 +265,10 @@ export function PortfolioHeader() {
                   <Link
                     href="/#contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="mt-8 inline-flex border-4 border-black bg-hot-magenta px-8 py-4 font-accent text-xl font-bold tracking-wider text-white shadow-brutal"
+                    className={cn(
+                      "mt-8 inline-flex",
+                      portfolioButtonClassNames.accent,
+                    )}
                   >
                     {portfolioBrand.primaryNavigationActionLabel}
                   </Link>

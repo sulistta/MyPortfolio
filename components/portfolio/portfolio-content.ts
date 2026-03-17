@@ -163,7 +163,7 @@ export const portfolioProjects: PortfolioProject[] = [
     previewVariant: "orbit",
     availability: "live",
     isFeatured: true,
-    featuredLayoutClassName: "lg:col-span-7",
+    featuredLayout: "lead",
     liveUrl: "https://example.com/neon-dreams",
     repoUrl: "https://github.com/example/neon-dreams",
     caseStudyUrl: "https://example.com/case-study/neon-dreams",
@@ -183,7 +183,7 @@ export const portfolioProjects: PortfolioProject[] = [
     previewVariant: "grid",
     availability: "private",
     isFeatured: true,
-    featuredLayoutClassName: "lg:col-span-5 lg:mt-24",
+    featuredLayout: "support",
     repoUrl: "https://github.com/example/code-canvas",
     caseStudyUrl: "https://example.com/case-study/code-canvas",
   },
@@ -202,7 +202,7 @@ export const portfolioProjects: PortfolioProject[] = [
     previewVariant: "bars",
     availability: "live",
     isFeatured: true,
-    featuredLayoutClassName: "lg:col-span-8 lg:col-start-3 lg:-mt-12",
+    featuredLayout: "centerpiece",
     liveUrl: "https://example.com/data-flow",
   },
   {
@@ -311,13 +311,13 @@ export const contactDetails: ContactDetail[] = [
     label: "EMAIL",
     value: "uvitor372@gmail.com",
     icon: Mail,
-    iconContainerClassName: "bg-electric-yellow",
+    accentTone: "yellow",
   },
   {
     label: "LOCATION",
     value: "San Francisco, CA",
     icon: MapPin,
-    iconContainerClassName: "bg-cyan-blast",
+    accentTone: "cyan",
   },
 ];
 

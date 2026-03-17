@@ -34,6 +34,8 @@ export type ProjectPreviewVariant =
 
 export type ProjectAvailability = "live" | "private" | "concept";
 
+export type FeaturedProjectLayout = "lead" | "support" | "centerpiece";
+
 export type PortfolioProject = {
   id: string;
   slug: string;
@@ -48,7 +50,7 @@ export type PortfolioProject = {
   previewVariant: ProjectPreviewVariant;
   availability: ProjectAvailability;
   isFeatured: boolean;
-  featuredLayoutClassName?: string;
+  featuredLayout?: FeaturedProjectLayout;
   liveUrl?: string;
   repoUrl?: string;
   caseStudyUrl?: string;
@@ -67,11 +69,13 @@ export type SocialProfileLink = {
   href: string;
 };
 
+export type ContactDetailAccentTone = "yellow" | "cyan";
+
 export type ContactDetail = {
   label: string;
   value: string;
   icon: LucideIcon;
-  iconContainerClassName: string;
+  accentTone: ContactDetailAccentTone;
 };
 
 export type ContactFieldName = "name" | "email" | "message";

@@ -11,9 +11,14 @@ import {
 } from "../portfolio-content";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
-  PORTFOLIO_CONTAINER_CLASS_NAME,
-  scrollToSection,
-} from "../portfolio-utils";
+  PORTFOLIO_GRID_PATTERN_LIGHT_STYLE,
+  PORTFOLIO_SECTION_SCROLL_STYLE,
+  portfolioButtonClassNames,
+  portfolioLayoutClassNames,
+  portfolioSurfaceClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
+import { scrollToSection } from "../portfolio-utils";
 import { MagneticActionButton } from "../primitives/magnetic-action-button";
 
 const projectHeroStats = [
@@ -106,16 +111,9 @@ export function ProjectsCatalogHeroSection() {
   return (
     <section
       className="relative overflow-hidden bg-off-white"
-      style={{ scrollMarginTop: 112 }}
+      style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      <div className="absolute inset-0 opacity-5" style={PORTFOLIO_GRID_PATTERN_LIGHT_STYLE} />
       {projectHeroStickerDecorations.map((projectHeroSticker) => (
         <motion.div
           key={projectHeroSticker.src}
@@ -137,16 +135,16 @@ export function ProjectsCatalogHeroSection() {
         </motion.div>
       ))}
 
-      <div className={`relative z-10 ${PORTFOLIO_CONTAINER_CLASS_NAME}`}>
+      <div className={portfolioLayoutClassNames.contentContainer}>
         <div className="py-24 md:py-32">
           <motion.div
             initial={{ x: -60, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: portfolioEntranceEase }}
           >
-            <div className="mb-4 flex items-center gap-4">
+            <div className={portfolioLayoutClassNames.kickerRow}>
               <div className="h-1 w-16 bg-black" />
-              <span className="font-accent text-sm tracking-[0.2em] text-light-gray">
+              <span className={portfolioTypographyClassNames.kickerOnLight}>
                 {projectsPageHeroContent.kicker}
               </span>
             </div>
@@ -160,7 +158,7 @@ export function ProjectsCatalogHeroSection() {
                   delay: 0.15,
                   ease: portfolioEntranceEase,
                 }}
-                className="font-heading text-[20vw] leading-[0.85] tracking-tight text-ink-black md:text-[12vw] lg:text-[10vw]"
+                className={portfolioTypographyClassNames.projectsDisplay}
               >
                 {projectsPageHeroContent.title}
               </motion.h1>
@@ -183,7 +181,7 @@ export function ProjectsCatalogHeroSection() {
               }}
               className="relative mt-3 text-right md:mt-4 lg:mt-6"
             >
-              <h1 className="font-heading text-[20vw] leading-[0.85] tracking-tight text-ink-black md:text-[12vw] lg:text-[10vw]">
+              <h1 className={portfolioTypographyClassNames.projectsDisplay}>
                 {projectsPageHeroContent.highlightedTitle}
               </h1>
               <motion.div
@@ -214,7 +212,7 @@ export function ProjectsCatalogHeroSection() {
             <MagneticActionButton
               type="button"
               onClick={() => scrollToSection("all-projects")}
-              className="group border-4 border-black bg-black px-8 py-4 font-accent text-lg font-bold tracking-wider text-white shadow-brutal transition-colors hover:bg-electric-yellow hover:text-black"
+              className={`group shadow-brutal ${portfolioButtonClassNames.primary}`}
               magnetStrength={0.35}
             >
               <span className="flex items-center gap-3">
@@ -226,7 +224,7 @@ export function ProjectsCatalogHeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 href="/#contact"
-                className="inline-flex items-center gap-3 border-4 border-black bg-white px-8 py-4 font-accent text-lg font-bold tracking-wider text-black transition-colors hover:bg-electric-yellow hover:text-black"
+                className={portfolioButtonClassNames.secondary}
               >
                 {projectsPageHeroContent.secondaryActionLabel}
                 <ArrowUpRight className="h-5 w-5" />
@@ -245,7 +243,7 @@ export function ProjectsCatalogHeroSection() {
                   duration: 0.45,
                   ease: portfolioEntranceEase,
                 }}
-                className="border-4 border-black bg-white p-6 shadow-brutal"
+                className={portfolioSurfaceClassNames.statCard}
               >
                 <div
                   className="mb-4 h-2 w-16 border-2 border-black"
@@ -254,7 +252,7 @@ export function ProjectsCatalogHeroSection() {
                 <p className="font-heading text-5xl text-ink-black">
                   {projectHeroStat.value}
                 </p>
-                <p className="mt-2 font-accent text-sm tracking-wider text-light-gray">
+                <p className={portfolioTypographyClassNames.statLabel}>
                   {projectHeroStat.label}
                 </p>
               </motion.div>

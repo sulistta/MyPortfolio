@@ -12,9 +12,12 @@ import { useTypewriterText } from "../hooks/use-typewriter-text";
 import { portfolioBrand } from "../portfolio-content";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
-  PORTFOLIO_CONTAINER_CLASS_NAME,
-  scrollToSection,
-} from "../portfolio-utils";
+  PORTFOLIO_GRID_PATTERN_LIGHT_STYLE,
+  portfolioButtonClassNames,
+  portfolioLayoutClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
+import { scrollToSection } from "../portfolio-utils";
 import { MagneticActionButton } from "../primitives/magnetic-action-button";
 
 const heroStickerDecorations = [
@@ -162,16 +165,12 @@ export function PortfolioHeroSection() {
         ))}
         <div
           className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
+          style={PORTFOLIO_GRID_PATTERN_LIGHT_STYLE}
         />
       </motion.div>
 
       <motion.div
-        className={`relative z-10 w-full ${PORTFOLIO_CONTAINER_CLASS_NAME}`}
+        className={portfolioLayoutClassNames.contentContainerWide}
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
         <div className="relative">
@@ -185,7 +184,7 @@ export function PortfolioHeroSection() {
             }}
             className="relative"
           >
-            <h1 className="font-heading text-[15vw] leading-[0.85] tracking-tight text-ink-black md:text-[12vw] lg:text-[10vw]">
+            <h1 className={portfolioTypographyClassNames.heroDisplay}>
               {portfolioBrand.heroPrimaryHeading}
             </h1>
             <motion.div
@@ -206,7 +205,7 @@ export function PortfolioHeroSection() {
             }}
             className="relative -mt-4 text-right md:-mt-8"
           >
-            <h1 className="font-heading text-[15vw] leading-[0.85] tracking-tight text-ink-black md:text-[12vw] lg:text-[10vw]">
+            <h1 className={portfolioTypographyClassNames.heroDisplay}>
               {portfolioBrand.heroSecondaryHeading}
             </h1>
             <motion.div
@@ -244,7 +243,7 @@ export function PortfolioHeroSection() {
             transition={{ delay: 0.8 }}
             className="mt-12 max-w-2xl md:mt-16"
           >
-            <p className="font-body text-lg leading-relaxed text-ink-black md:text-xl lg:text-2xl">
+            <p className={portfolioTypographyClassNames.heroLead}>
               {typedHeroTagline}
               <motion.span
                 animate={{ opacity: [1, 0] }}
@@ -267,7 +266,7 @@ export function PortfolioHeroSection() {
             <MagneticActionButton
               type="button"
               onClick={() => scrollToSection("projects")}
-              className="group relative border-4 border-black bg-black px-8 py-4 font-accent text-lg font-bold tracking-wider text-white shadow-brutal transition-shadow duration-200 hover:shadow-brutal-accent"
+              className={portfolioButtonClassNames.hero}
               magnetStrength={0.4}
             >
               <span className="flex items-center gap-3">

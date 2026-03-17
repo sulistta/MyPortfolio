@@ -1,6 +1,25 @@
 import type { Metadata } from "next";
+import { Archivo_Black, Space_Mono, Syne } from "next/font/google";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+const headingFont = Archivo_Black({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-archivo-black",
+});
+
+const bodyFont = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+});
+
+const accentFont = Syne({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-syne",
+});
 
 export const metadata: Metadata = {
   title: "Vítor | Creative Developer & Digital Artist",
@@ -36,7 +55,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="antialiased overflow-x-hidden">{children}</body>
+      <body
+        className={`${headingFont.variable} ${bodyFont.variable} ${accentFont.variable} overflow-x-hidden antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

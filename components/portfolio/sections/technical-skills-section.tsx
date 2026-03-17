@@ -9,7 +9,12 @@ import {
   portfolioRevealViewport,
   skillCardEntryRotations,
 } from "../portfolio-motion";
-import { PORTFOLIO_CONTAINER_CLASS_NAME } from "../portfolio-utils";
+import {
+  PORTFOLIO_SECTION_SCROLL_STYLE,
+  PORTFOLIO_SKILLS_PATTERN_STYLE,
+  portfolioLayoutClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
 import { SkillHighlightCard } from "../cards/skill-highlight-card";
 
 export function TechnicalSkillsSection() {
@@ -23,31 +28,25 @@ export function TechnicalSkillsSection() {
     <section
       id="skills"
       ref={skillsSectionReference}
-      className="relative overflow-hidden bg-off-white py-24 md:py-32"
-      style={{ scrollMarginTop: 112 }}
+      className={portfolioLayoutClassNames.lightSectionCompact}
+      style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, #000, #000 2px, transparent 2px, transparent 20px)",
-        }}
-      />
+      <div className="absolute inset-0 opacity-5" style={PORTFOLIO_SKILLS_PATTERN_STYLE} />
 
-      <div className={`relative z-10 ${PORTFOLIO_CONTAINER_CLASS_NAME}`}>
+      <div className={portfolioLayoutClassNames.contentContainer}>
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={isSkillsSectionVisible ? { x: 0, opacity: 1 } : undefined}
           transition={{ duration: 0.6, ease: portfolioEntranceEase }}
           className="mb-16"
         >
-          <div className="mb-4 flex items-center gap-4">
+          <div className={portfolioLayoutClassNames.kickerRow}>
             <div className="h-1 w-16 bg-black" />
-            <span className="font-accent text-sm tracking-[0.2em] text-light-gray">
+            <span className={portfolioTypographyClassNames.kickerOnLight}>
               {skillsSectionContent.kicker}
             </span>
           </div>
-          <h2 className="font-heading text-5xl text-ink-black md:text-6xl lg:text-7xl">
+          <h2 className={portfolioTypographyClassNames.lightSectionTitle}>
             {skillsSectionContent.title}
           </h2>
         </motion.div>

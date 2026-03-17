@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { portfolioEntranceEase } from "../portfolio-motion";
+import {
+  portfolioSurfaceClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
 import type { SkillHighlight } from "../portfolio-types";
 
 function getContrastingTextColor(backgroundColor: string) {
@@ -63,7 +67,7 @@ export function SkillHighlightCard({
             : "4px 4px 0px #000",
         }}
         transition={{ duration: 0.2 }}
-        className="relative cursor-pointer overflow-hidden border-4 border-black bg-white p-4 md:p-6"
+        className={`relative cursor-pointer overflow-hidden ${portfolioSurfaceClassNames.panel} p-4 md:p-6`}
       >
         <div
           className="mb-4 flex h-12 w-12 items-center justify-center border-4 border-black transition-colors duration-200 md:h-14 md:w-14"
@@ -77,7 +81,7 @@ export function SkillHighlightCard({
           />
         </div>
 
-        <h3 className="font-accent text-sm font-bold tracking-wider text-ink-black md:text-base">
+        <h3 className={portfolioTypographyClassNames.skillCardTitle}>
           {skillHighlight.name}
         </h3>
 

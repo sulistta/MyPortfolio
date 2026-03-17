@@ -2,6 +2,7 @@ import { motion, type HTMLMotionProps } from "framer-motion";
 import type { ReactNode } from "react";
 import { useRef, useState } from "react";
 import { magneticButtonSpring } from "../portfolio-motion";
+import { cn } from "../portfolio-styles";
 
 type MagneticActionButtonProps = Omit<HTMLMotionProps<"button">, "children"> & {
   children: ReactNode;
@@ -21,7 +22,7 @@ export function MagneticActionButton({
   return (
     <motion.button
       ref={buttonReference}
-      className={className}
+      className={cn(className)}
       onMouseMove={(event) => {
         if (!buttonReference.current) {
           return;

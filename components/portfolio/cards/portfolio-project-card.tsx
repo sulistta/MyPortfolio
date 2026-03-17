@@ -3,6 +3,10 @@ import { Code2, Eye, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
+import {
+  portfolioSurfaceClassNames,
+  portfolioTypographyClassNames,
+} from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
 import { PortfolioProjectPreviewArtwork } from "../primitives/portfolio-project-preview-artwork";
@@ -87,7 +91,7 @@ export function PortfolioProjectCard({
               : "8px 8px 0px #000",
           }}
           transition={{ duration: 0.25 }}
-          className="relative overflow-hidden border-4 border-black bg-white"
+          className={`relative overflow-hidden ${portfolioSurfaceClassNames.panel}`}
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
@@ -103,11 +107,13 @@ export function PortfolioProjectCard({
             />
 
             <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-              <span className="border-4 border-black bg-white px-3 py-1 font-accent text-xs tracking-wider text-ink-black">
+              <span
+                className={`${portfolioSurfaceClassNames.badge} bg-white text-ink-black`}
+              >
                 {portfolioProject.category}
               </span>
               <span
-                className="border-4 border-black px-3 py-1 font-accent text-xs tracking-wider text-ink-black"
+                className={`${portfolioSurfaceClassNames.badge} text-ink-black`}
                 style={{ backgroundColor: portfolioProject.accentColor }}
               >
                 {availabilityLabels[portfolioProject.availability]}
@@ -133,13 +139,13 @@ export function PortfolioProjectCard({
           </div>
 
           <div className="p-6">
-            <h3 className="mb-2 font-heading text-3xl text-ink-black">
+            <h3 className={`mb-2 ${portfolioTypographyClassNames.cardTitle}`}>
               {portfolioProject.title}
             </h3>
-            <p className="mb-4 font-body text-sm leading-relaxed text-light-gray">
+            <p className={`mb-4 ${portfolioTypographyClassNames.cardSummary}`}>
               {portfolioProject.summary}
             </p>
-            <p className="font-body text-sm leading-relaxed text-dark-gray">
+            <p className={portfolioTypographyClassNames.cardDescription}>
               {portfolioProject.description}
             </p>
 
@@ -147,7 +153,7 @@ export function PortfolioProjectCard({
               {portfolioProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider"
+                  className={portfolioSurfaceClassNames.tag}
                   style={{
                     backgroundColor: `${portfolioProject.accentColor}20`,
                   }}
@@ -162,28 +168,28 @@ export function PortfolioProjectCard({
                 href={portfolioProject.liveUrl}
                 label="VIEW"
                 icon={Eye}
-                className="border-4 border-black bg-black px-4 py-2 font-accent text-sm font-bold tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black"
-                disabledClassName="border-4 border-black bg-black px-4 py-2 font-accent text-sm font-bold tracking-wider text-white pointer-events-none"
+                surface="dark"
+                variant="primary"
               />
               <ProjectActionLink
                 href={portfolioProject.repoUrl}
                 label="CODE"
                 icon={Code2}
-                className="border-4 border-black bg-white px-4 py-2 font-accent text-sm font-bold tracking-wider text-black transition-colors hover:bg-electric-yellow hover:text-black"
-                disabledClassName="border-4 border-black bg-white px-4 py-2 font-accent text-sm font-bold tracking-wider text-black pointer-events-none"
+                surface="dark"
+                variant="secondary"
               />
               <ProjectActionLink
                 href={portfolioProject.caseStudyUrl}
                 label="CASE STUDY"
                 icon={FileText}
-                className="border-4 border-black bg-hot-magenta px-4 py-2 font-accent text-sm font-bold tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black"
-                disabledClassName="border-4 border-black bg-hot-magenta px-4 py-2 font-accent text-sm font-bold tracking-wider text-white pointer-events-none"
+                surface="dark"
+                variant="accent"
               />
             </div>
           </div>
 
           <div
-            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
+            className={portfolioSurfaceClassNames.accentCorner}
             style={{
               borderTopColor: portfolioProject.accentColor,
               borderLeftColor: "transparent",

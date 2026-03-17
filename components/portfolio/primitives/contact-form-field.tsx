@@ -3,6 +3,7 @@ import type {
   ContactFieldDefinition,
   ContactFieldName,
 } from "../portfolio-types";
+import { portfolioSurfaceClassNames } from "../portfolio-styles";
 
 type ContactFormFieldProps = {
   fieldDefinition: ContactFieldDefinition;
@@ -58,7 +59,7 @@ export function ContactFormField({
           onFocus={() => onFieldFocus(fieldDefinition.name)}
           onBlur={onFieldBlur}
           rows={fieldDefinition.rows ?? 5}
-          className="w-full resize-none border-4 border-black bg-white px-4 py-4 font-body text-lg transition-all duration-200 focus:outline-none"
+          className={portfolioSurfaceClassNames.textarea}
           style={{
             boxShadow: isFieldFocused ? "8px 8px 0px #FF006E" : "4px 4px 0px #000",
           }}
@@ -73,7 +74,7 @@ export function ContactFormField({
           }
           onFocus={() => onFieldFocus(fieldDefinition.name)}
           onBlur={onFieldBlur}
-          className="w-full border-4 border-black bg-white px-4 py-4 font-body text-lg transition-all duration-200 focus:outline-none"
+          className={portfolioSurfaceClassNames.input}
           style={{
             boxShadow: isFieldFocused ? "8px 8px 0px #FF006E" : "4px 4px 0px #000",
           }}
