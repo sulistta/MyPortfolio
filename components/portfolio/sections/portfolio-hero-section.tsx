@@ -173,50 +173,48 @@ export function PortfolioHeroSection() {
         className={portfolioLayoutClassNames.contentContainerWide}
         style={{ opacity: heroOpacity, scale: heroScale }}
       >
-        <div className="relative">
-          <div className="mx-20">
+        <div className="relative mx-20">
+          <motion.div
+            initial={{ x: "-100%", rotate: -10, opacity: 0 }}
+            animate={{ x: 0, rotate: -3, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: portfolioEntranceEase,
+            }}
+            className="relative"
+          >
+            <h1 className={portfolioTypographyClassNames.heroDisplay}>
+              {portfolioBrand.heroPrimaryHeading}
+            </h1>
             <motion.div
-              initial={{ x: "-100%", rotate: -10, opacity: 0 }}
-              animate={{ x: 0, rotate: -3, opacity: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-                ease: portfolioEntranceEase,
-              }}
-              className="relative"
-            >
-              <h1 className={portfolioTypographyClassNames.heroDisplay}>
-                {portfolioBrand.heroPrimaryHeading}
-              </h1>
-              <motion.div
-                className="absolute -bottom-2 left-0 h-4 bg-electric-yellow md:h-6"
-                initial={{ width: 0 }}
-                animate={{ width: "60%" }}
-                transition={{ duration: 0.6, delay: 1 }}
-              />
-            </motion.div>
-  
+              className="absolute -bottom-2 left-0 h-4 bg-electric-yellow md:h-6"
+              initial={{ width: 0 }}
+              animate={{ width: "60%" }}
+              transition={{ duration: 0.6, delay: 1 }}
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ x: "100%", rotate: 10, opacity: 0 }}
+            animate={{ x: 0, rotate: 3, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.4,
+              ease: portfolioEntranceEase,
+            }}
+            className="relative -mt-4 text-right md:-mt-8"
+          >
+            <h1 className={portfolioTypographyClassNames.heroDisplay}>
+              {portfolioBrand.heroSecondaryHeading}
+            </h1>
             <motion.div
-              initial={{ x: "100%", rotate: 10, opacity: 0 }}
-              animate={{ x: 0, rotate: 3, opacity: 1 }}
-              transition={{
-                duration: 0.8,
-                delay: 0.4,
-                ease: portfolioEntranceEase,
-              }}
-              className="relative -mt-4 text-right md:-mt-8"
-            >
-              <h1 className={portfolioTypographyClassNames.heroDisplay}>
-                {portfolioBrand.heroSecondaryHeading}
-              </h1>
-              <motion.div
-                className="absolute -bottom-2 right-0 h-4 bg-hot-magenta md:h-6"
-                initial={{ width: 0 }}
-                animate={{ width: "50%" }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              />
-            </motion.div>
-          </div>
+              className="absolute -bottom-2 right-0 h-4 bg-hot-magenta md:h-6"
+              initial={{ width: 0 }}
+              animate={{ width: "50%" }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            />
+          </motion.div>
 
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
