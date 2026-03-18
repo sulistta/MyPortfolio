@@ -39,13 +39,16 @@ export const PORTFOLIO_SKILLS_PATTERN_STYLE = {
 export const portfolioLayoutClassNames = {
   shell: "relative noise-overlay",
   contentContainer: cn("relative z-10", PORTFOLIO_CONTAINER_CLASS_NAME),
-  contentContainerWide: cn("relative z-10 w-full", PORTFOLIO_CONTAINER_CLASS_NAME),
+  contentContainerWide: cn(
+    "relative z-10 w-full",
+    PORTFOLIO_CONTAINER_CLASS_NAME,
+  ),
   sectionIntro: "mb-16 md:mb-24",
   kickerRow: "mb-4 flex items-center gap-4",
   lightSection: "relative overflow-hidden bg-off-white py-24 md:py-32 lg:py-40",
-  lightSectionCompact:
-    "relative overflow-hidden bg-off-white py-24 md:py-32",
-  creamSection: "relative overflow-hidden bg-soft-cream py-24 md:py-32 lg:py-40",
+  lightSectionCompact: "relative overflow-hidden bg-off-white py-24 md:py-32",
+  creamSection:
+    "relative overflow-hidden bg-soft-cream py-24 md:py-32 lg:py-40",
   darkSection: "relative overflow-hidden bg-charcoal py-24 md:py-32 lg:py-40",
 } as const;
 
@@ -81,7 +84,8 @@ export const portfolioSurfaceClassNames = {
   statCard: "border-4 border-black bg-white p-6 shadow-brutal",
   statCardCompact:
     "border-4 border-black bg-white p-4 transition-all duration-200 shadow-brutal md:p-6",
-  contactCard: "flex items-center gap-4 border-4 border-black bg-white p-4 shadow-brutal",
+  contactCard:
+    "flex items-center gap-4 border-4 border-black bg-white p-4 shadow-brutal",
   contactIcon:
     "flex h-12 w-12 items-center justify-center border-4 border-black",
   socialButton:
@@ -94,15 +98,16 @@ export const portfolioSurfaceClassNames = {
     "w-full resize-none border-4 border-black bg-white px-4 py-4 font-body text-lg transition-all duration-200 focus:outline-none",
   accentCorner:
     "absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]",
-  funFactCard: "border-4 border-black bg-electric-yellow p-6 shadow-brutal-magenta",
-  emptyState: "border-4 border-white bg-off-white p-6 text-center shadow-brutal",
+  funFactCard:
+    "border-4 border-black bg-electric-yellow p-6 shadow-brutal-magenta",
+  emptyState:
+    "border-4 border-white bg-off-white p-6 text-center shadow-brutal",
 } as const;
 
 export const portfolioButtonClassNames = {
   navPrimary:
     "border-4 border-black bg-black px-5 py-2 font-accent text-sm tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black",
-  hero:
-    "group relative border-4 border-black bg-black px-8 py-4 font-accent text-lg font-bold tracking-wider text-white shadow-brutal transition-shadow duration-200 hover:shadow-brutal-accent",
+  hero: "group relative border-4 border-black bg-black px-8 py-4 font-accent text-lg font-bold tracking-wider text-white shadow-brutal transition-shadow duration-200 hover:shadow-brutal-accent",
   primary:
     "border-4 border-black bg-black px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-electric-yellow hover:text-black",
   secondary:
@@ -144,7 +149,7 @@ export const featuredProjectLayoutClassNames: Record<
 > = {
   lead: "lg:col-span-7",
   support: "lg:col-span-5 lg:mt-24",
-  centerpiece: "lg:col-span-8 lg:col-start-3 lg:-mt-12",
+  centerpiece: "lg:col-span-8 lg:col-start-3",
 };
 
 export const contactDetailAccentClassNames: Record<
