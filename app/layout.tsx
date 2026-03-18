@@ -54,7 +54,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-theme="dark">
       <body
         className={`${headingFont.variable} ${bodyFont.variable} ${accentFont.variable} overflow-x-hidden antialiased`}
       >

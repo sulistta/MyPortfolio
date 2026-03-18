@@ -48,6 +48,17 @@ export function PortfolioHeader() {
     return `/${sectionHref}`;
   };
 
+  const desktopNavigationLinkClassName =
+    "group relative font-accent text-sm tracking-wider text-gray-300 transition-colors hover:text-white";
+  const headerActionClassName = cn(
+    portfolioButtonClassNames.navPrimary,
+    "!border-white !bg-electric-yellow !text-black hover:!bg-white hover:!text-black",
+  );
+  const mobileMenuActionClassName = cn(
+    portfolioButtonClassNames.accent,
+    "!border-white !shadow-[8px_8px_0px_rgba(250,250,250,0.14)]",
+  );
+
   return (
     <>
       <motion.header
@@ -57,7 +68,7 @@ export function PortfolioHeader() {
         className={cn(
           "fixed left-0 right-0 top-0 z-[99] transition-all duration-300",
           hasPageScrolled
-            ? "border-b-4 border-black bg-off-white/90 backdrop-blur-md"
+            ? "border-b-4 border-white bg-ink-black/85 shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-md"
             : "bg-transparent",
         )}
       >
@@ -69,14 +80,14 @@ export function PortfolioHeader() {
                 onClick={scrollPageToTop}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="font-heading text-2xl text-ink-black md:text-3xl"
+                className="font-heading text-2xl text-white md:text-3xl"
               >
                 {portfolioBrand.headerMark}
                 <span className="text-hot-magenta">.</span>
               </motion.button>
             ) : (
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/" className="font-heading text-2xl text-ink-black md:text-3xl">
+                <Link href="/" className="font-heading text-2xl text-white md:text-3xl">
                   {portfolioBrand.headerMark}
                   <span className="text-hot-magenta">.</span>
                 </Link>
@@ -98,7 +109,7 @@ export function PortfolioHeader() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: navigationIndex * 0.1 }}
                       whileHover={{ y: -2 }}
-                      className="group relative font-accent text-sm tracking-wider text-dark-gray transition-colors hover:text-ink-black"
+                      className={desktopNavigationLinkClassName}
                     >
                       {navigationLink.label}
                       <motion.span
@@ -127,8 +138,8 @@ export function PortfolioHeader() {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`group relative font-accent text-sm tracking-wider transition-colors ${
                         isCurrentProjectsPage
-                          ? "text-ink-black"
-                          : "text-dark-gray hover:text-ink-black"
+                          ? "text-electric-yellow"
+                          : "text-gray-300 hover:text-white"
                       }`}
                       aria-current={isCurrentProjectsPage ? "page" : undefined}
                     >
@@ -146,7 +157,7 @@ export function PortfolioHeader() {
                 <MagneticActionButton
                   type="button"
                   onClick={() => handleSectionNavigation("#contact")}
-                  className={portfolioButtonClassNames.navPrimary}
+                  className={headerActionClassName}
                 >
                   {portfolioBrand.primaryNavigationActionLabel}
                 </MagneticActionButton>
@@ -155,7 +166,7 @@ export function PortfolioHeader() {
                   <Link
                     href="/#contact"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className={cn("inline-flex", portfolioButtonClassNames.navPrimary)}
+                    className={cn("inline-flex", headerActionClassName)}
                   >
                     {portfolioBrand.primaryNavigationActionLabel}
                   </Link>
@@ -167,7 +178,7 @@ export function PortfolioHeader() {
               type="button"
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsMobileMenuOpen((currentValue) => !currentValue)}
-              className="flex h-12 w-12 items-center justify-center border-4 border-black bg-black text-white md:hidden"
+              className="flex h-12 w-12 items-center justify-center border-4 border-white bg-electric-yellow text-black shadow-[4px_4px_0px_rgba(250,250,250,0.16)] md:hidden"
               aria-expanded={isMobileMenuOpen}
               aria-label={
                 isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
@@ -190,14 +201,29 @@ export function PortfolioHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[98] bg-off-white md:hidden"
+            className="fixed inset-0 z-[98] overflow-hidden bg-ink-black md:hidden"
           >
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 20% 20%, rgba(255, 0, 110, 0.22) 0%, transparent 34%), radial-gradient(circle at 82% 18%, rgba(0, 245, 255, 0.16) 0%, transparent 30%), radial-gradient(circle at 50% 80%, rgba(255, 233, 0, 0.12) 0%, transparent 28%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+                backgroundSize: "72px 72px",
+              }}
+            />
             <motion.nav
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
               transition={{ delay: 0.1, duration: 0.3 }}
-              className="flex h-full flex-col items-center justify-center gap-8"
+              className="relative z-10 flex h-full flex-col items-center justify-center gap-8"
             >
               {portfolioNavigationLinks.map((navigationLink, navigationIndex) => {
                 const isCurrentProjectsPage =
@@ -212,7 +238,7 @@ export function PortfolioHeader() {
                       initial={{ opacity: 0, x: -50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + navigationIndex * 0.05 }}
-                      className="font-heading text-4xl text-ink-black transition-colors hover:text-hot-magenta"
+                      className="font-heading text-4xl text-white transition-colors hover:text-hot-magenta"
                     >
                       {navigationLink.label}
                     </motion.button>
@@ -235,8 +261,8 @@ export function PortfolioHeader() {
                       className={cn(
                         "font-heading text-4xl transition-colors",
                         isCurrentProjectsPage
-                          ? "text-hot-magenta"
-                          : "text-ink-black hover:text-hot-magenta",
+                          ? "text-electric-yellow"
+                          : "text-white hover:text-hot-magenta",
                       )}
                     >
                       {navigationLink.label}
@@ -252,7 +278,7 @@ export function PortfolioHeader() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.4 }}
                   onClick={() => handleSectionNavigation("#contact")}
-                  className={cn("mt-8", portfolioButtonClassNames.accent)}
+                  className={cn("mt-8", mobileMenuActionClassName)}
                 >
                   {portfolioBrand.primaryNavigationActionLabel}
                 </motion.button>
@@ -267,7 +293,7 @@ export function PortfolioHeader() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={cn(
                       "mt-8 inline-flex",
-                      portfolioButtonClassNames.accent,
+                      mobileMenuActionClassName,
                     )}
                   >
                     {portfolioBrand.primaryNavigationActionLabel}
@@ -280,13 +306,13 @@ export function PortfolioHeader() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.3 }}
-              className="absolute bottom-10 left-10 h-20 w-20 border-4 border-black bg-electric-yellow"
+              className="absolute bottom-10 left-10 h-20 w-20 border-4 border-white bg-electric-yellow shadow-[8px_8px_0px_rgba(250,250,250,0.12)]"
             />
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.4 }}
-              className="absolute right-10 top-20 h-16 w-16 rounded-full border-4 border-black bg-cyan-blast"
+              className="absolute right-10 top-20 h-16 w-16 rounded-full border-4 border-white bg-cyan-blast shadow-[8px_8px_0px_rgba(250,250,250,0.12)]"
             />
           </motion.div>
         ) : null}

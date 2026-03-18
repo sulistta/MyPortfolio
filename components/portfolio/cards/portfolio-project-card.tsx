@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
 import {
+  cn,
   portfolioSurfaceClassNames,
   portfolioTypographyClassNames,
 } from "../portfolio-styles";
@@ -21,6 +22,28 @@ const availabilityLabels = {
   private: "PRIVATE BUILD",
   concept: "R&D CONCEPT",
 } as const;
+
+function getContrastingTextColor(backgroundColor: string) {
+  const hexColor = backgroundColor.replace("#", "").trim();
+  const normalizedHexColor =
+    hexColor.length === 3
+      ? hexColor
+          .split("")
+          .map((hexDigit) => `${hexDigit}${hexDigit}`)
+          .join("")
+      : hexColor;
+
+  if (normalizedHexColor.length !== 6) {
+    return "#05070c";
+  }
+
+  const red = Number.parseInt(normalizedHexColor.slice(0, 2), 16);
+  const green = Number.parseInt(normalizedHexColor.slice(2, 4), 16);
+  const blue = Number.parseInt(normalizedHexColor.slice(4, 6), 16);
+  const luminance = (red * 299 + green * 587 + blue * 114) / 1000;
+
+  return luminance >= 150 ? "#05070c" : "#f5f7fb";
+}
 
 export function PortfolioProjectCard({
   portfolioProject,
@@ -88,10 +111,13 @@ export function PortfolioProjectCard({
             y: isCardHovered ? -10 : 0,
             boxShadow: isCardHovered
               ? `12px 12px 0px ${portfolioProject.accentColor}`
-              : "8px 8px 0px #000",
+              : "8px 8px 0px rgba(245, 247, 251, 0.14)",
           }}
           transition={{ duration: 0.25 }}
-          className={`relative overflow-hidden ${portfolioSurfaceClassNames.panel}`}
+          className={cn(
+            "relative overflow-hidden border-white bg-[#10131c] shadow-[8px_8px_0px_rgba(245,247,251,0.14)]",
+            portfolioSurfaceClassNames.panel,
+          )}
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
@@ -101,26 +127,32 @@ export function PortfolioProjectCard({
               className="absolute inset-0 opacity-20"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+                  "linear-gradient(to right, rgba(245, 247, 251, 0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(245, 247, 251, 0.14) 1px, transparent 1px)",
                 backgroundSize: "64px 64px",
               }}
             />
 
             <div className="absolute left-4 top-4 flex flex-wrap gap-2">
               <span
-                className={`${portfolioSurfaceClassNames.badge} bg-white text-ink-black`}
+                className={cn(
+                  portfolioSurfaceClassNames.badge,
+                  "border-white bg-[rgba(6,8,15,0.82)] text-white backdrop-blur-sm",
+                )}
               >
                 {portfolioProject.category}
               </span>
               <span
-                className={`${portfolioSurfaceClassNames.badge} text-ink-black`}
-                style={{ backgroundColor: portfolioProject.accentColor }}
+                className={cn(portfolioSurfaceClassNames.badge, "border-white")}
+                style={{
+                  backgroundColor: portfolioProject.accentColor,
+                  color: getContrastingTextColor(portfolioProject.accentColor),
+                }}
               >
                 {availabilityLabels[portfolioProject.availability]}
               </span>
             </div>
 
-            <div className="absolute right-4 top-4 border-4 border-white bg-black px-3 py-1 font-accent text-xs tracking-wider text-white">
+            <div className="absolute right-4 top-4 border-4 border-white bg-[rgba(6,8,15,0.82)] px-3 py-1 font-accent text-xs tracking-wider text-white backdrop-blur-sm">
               {portfolioProject.year}
             </div>
 
@@ -153,9 +185,12 @@ export function PortfolioProjectCard({
               {portfolioProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className={portfolioSurfaceClassNames.tag}
+                  className={cn(
+                    portfolioSurfaceClassNames.tag,
+                    "border-white/60 text-white",
+                  )}
                   style={{
-                    backgroundColor: `${portfolioProject.accentColor}20`,
+                    backgroundColor: `${portfolioProject.accentColor}1f`,
                   }}
                 >
                   {technologyLabel}

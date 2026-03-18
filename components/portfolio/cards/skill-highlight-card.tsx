@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
+  cn,
   portfolioSurfaceClassNames,
   portfolioTypographyClassNames,
 } from "../portfolio-styles";
@@ -18,7 +19,7 @@ function getContrastingTextColor(backgroundColor: string) {
       : hexColor;
 
   if (normalizedHexColor.length !== 6) {
-    return "#000";
+    return "#05070c";
   }
 
   const red = Number.parseInt(normalizedHexColor.slice(0, 2), 16);
@@ -26,7 +27,11 @@ function getContrastingTextColor(backgroundColor: string) {
   const blue = Number.parseInt(normalizedHexColor.slice(4, 6), 16);
   const luminance = (red * 299 + green * 587 + blue * 114) / 1000;
 
-  return luminance >= 140 ? "#000" : "#FFF";
+  return luminance >= 140 ? "#05070c" : "#F5F7FB";
+}
+
+function resolveSkillAccentColor(backgroundColor: string) {
+  return backgroundColor.toLowerCase() === "#000000" ? "#fafafa" : backgroundColor;
 }
 
 type SkillHighlightCardProps = {
@@ -44,7 +49,8 @@ export function SkillHighlightCard({
 }: SkillHighlightCardProps) {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const SkillIcon = skillHighlight.icon;
-  const hoveredIconColor = getContrastingTextColor(skillHighlight.color);
+  const resolvedAccentColor = resolveSkillAccentColor(skillHighlight.color);
+  const hoveredIconColor = getContrastingTextColor(resolvedAccentColor);
 
   return (
     <motion.div
@@ -63,21 +69,26 @@ export function SkillHighlightCard({
         animate={{
           y: isCardHovered ? -8 : 0,
           boxShadow: isCardHovered
-            ? `8px 8px 0px ${skillHighlight.color}`
-            : "4px 4px 0px #000",
+            ? `8px 8px 0px ${resolvedAccentColor}`
+            : "6px 6px 0px rgba(245, 247, 251, 0.14)",
         }}
         transition={{ duration: 0.2 }}
-        className={`relative cursor-pointer overflow-hidden ${portfolioSurfaceClassNames.panel} p-4 md:p-6`}
+        className={cn(
+          "relative cursor-pointer overflow-hidden border-white bg-[#10131c] p-4 shadow-[6px_6px_0px_rgba(245,247,251,0.14)] md:p-6",
+          portfolioSurfaceClassNames.panel,
+        )}
       >
         <div
-          className="mb-4 flex h-12 w-12 items-center justify-center border-4 border-black transition-colors duration-200 md:h-14 md:w-14"
+          className="mb-4 flex h-12 w-12 items-center justify-center border-4 border-white transition-colors duration-200 md:h-14 md:w-14"
           style={{
-            backgroundColor: isCardHovered ? skillHighlight.color : "transparent",
+            backgroundColor: isCardHovered ? resolvedAccentColor : `${resolvedAccentColor}22`,
           }}
         >
           <SkillIcon
             className="h-6 w-6 transition-colors duration-200 md:h-7 md:w-7"
-            style={{ color: isCardHovered ? hoveredIconColor : skillHighlight.color }}
+            style={{
+              color: isCardHovered ? hoveredIconColor : resolvedAccentColor,
+            }}
           />
         </div>
 
@@ -85,7 +96,7 @@ export function SkillHighlightCard({
           {skillHighlight.name}
         </h3>
 
-        <div className="mt-3 h-2 overflow-hidden border-2 border-black bg-gray-200">
+        <div className="mt-3 h-2 overflow-hidden border-2 border-white/80 bg-white/10">
           <motion.div
             initial={{ width: 0 }}
             animate={
@@ -99,14 +110,18 @@ export function SkillHighlightCard({
               ease: "easeOut",
             }}
             className="h-full"
-            style={{ backgroundColor: skillHighlight.color }}
+            style={{ backgroundColor: resolvedAccentColor }}
           />
         </div>
+
+        <p className="mt-4 font-body text-xs uppercase tracking-[0.24em] text-theme-text-subtle">
+          Interface Craft
+        </p>
 
         <motion.div
           animate={{ opacity: isCardHovered ? 0.1 : 0 }}
           className="pointer-events-none absolute inset-0"
-          style={{ backgroundColor: skillHighlight.color }}
+          style={{ backgroundColor: resolvedAccentColor }}
         />
       </motion.div>
 
@@ -116,7 +131,7 @@ export function SkillHighlightCard({
           scale: isCardHovered ? 1 : 0,
           opacity: isCardHovered ? 1 : 0,
         }}
-        className="absolute -right-2 -top-2 z-10 border-2 border-white bg-black px-2 py-1 font-accent text-xs text-white"
+        className="absolute -right-2 -top-2 z-10 border-2 border-white bg-[rgba(6,8,15,0.9)] px-2 py-1 font-accent text-xs text-white"
       >
         {skillHighlight.proficiency}%
       </motion.div>

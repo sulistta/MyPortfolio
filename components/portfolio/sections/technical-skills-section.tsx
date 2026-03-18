@@ -11,7 +11,6 @@ import {
 } from "../portfolio-motion";
 import {
   PORTFOLIO_SECTION_SCROLL_STYLE,
-  PORTFOLIO_SKILLS_PATTERN_STYLE,
   portfolioLayoutClassNames,
   portfolioTypographyClassNames,
 } from "../portfolio-styles";
@@ -28,10 +27,17 @@ export function TechnicalSkillsSection() {
     <section
       id="skills"
       ref={skillsSectionReference}
-      className={portfolioLayoutClassNames.lightSectionCompact}
+      className="relative overflow-hidden bg-[#050505] py-24 md:py-32"
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
-      <div className="absolute inset-0 opacity-5" style={PORTFOLIO_SKILLS_PATTERN_STYLE} />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,0,110,0.16),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(0,245,255,0.12),transparent_40%)]" />
+      <div
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 20px)",
+        }}
+      />
 
       <div className={portfolioLayoutClassNames.contentContainer}>
         <motion.div
@@ -41,7 +47,7 @@ export function TechnicalSkillsSection() {
           className="mb-16"
         >
           <div className={portfolioLayoutClassNames.kickerRow}>
-            <div className="h-1 w-16 bg-black" />
+            <div className="h-1 w-16 bg-cyan-blast" />
             <span className={portfolioTypographyClassNames.kickerOnLight}>
               {skillsSectionContent.kicker}
             </span>

@@ -12,7 +12,8 @@ import { useTypewriterText } from "../hooks/use-typewriter-text";
 import { portfolioBrand } from "../portfolio-content";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
-  PORTFOLIO_GRID_PATTERN_LIGHT_STYLE,
+  PORTFOLIO_GRID_PATTERN_DARK_STYLE,
+  cn,
   portfolioButtonClassNames,
   portfolioLayoutClassNames,
   portfolioTypographyClassNames,
@@ -102,6 +103,13 @@ const heroStickerDecorations = [
   },
 ];
 
+const heroStickerImageStyle = {
+  width: "100%",
+  height: "auto",
+  filter:
+    "drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 18px rgba(250, 250, 250, 0.14))",
+} as const;
+
 export function PortfolioHeroSection() {
   const heroSectionReference = useRef<HTMLElement>(null);
   const typedHeroTagline = useTypewriterText(portfolioBrand.heroTagline);
@@ -121,6 +129,18 @@ export function PortfolioHeroSection() {
   });
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
+  const heroDisplayClassName = cn(
+    portfolioTypographyClassNames.heroDisplay,
+    "!text-white [text-shadow:0_8px_24px_rgba(0,0,0,0.45)]",
+  );
+  const heroLeadClassName = cn(
+    portfolioTypographyClassNames.heroLead,
+    "!text-gray-100",
+  );
+  const heroActionClassName = cn(
+    portfolioButtonClassNames.hero,
+    "!border-white !bg-electric-yellow !text-black !shadow-[8px_8px_0px_rgba(250,250,250,0.18)] hover:!shadow-[8px_8px_0px_rgba(0,245,255,0.75)]",
+  );
 
   useEffect(() => {
     const updateHeroParallax = (event: MouseEvent) => {
@@ -137,8 +157,15 @@ export function PortfolioHeroSection() {
   return (
     <section
       ref={heroSectionReference}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-off-white"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-ink-black"
     >
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 18% 20%, rgba(255, 0, 110, 0.22) 0%, transparent 34%), radial-gradient(circle at 82% 18%, rgba(0, 245, 255, 0.18) 0%, transparent 30%), radial-gradient(circle at 52% 82%, rgba(255, 233, 0, 0.14) 0%, transparent 28%)",
+        }}
+      />
       <motion.div
         className="pointer-events-none absolute inset-0"
         style={{ x: backgroundOffsetX, y: backgroundOffsetY }}
@@ -159,13 +186,13 @@ export function PortfolioHeroSection() {
               height={heroSticker.height}
               sizes={heroSticker.sizes}
               draggable={false}
-              style={{ width: "100%", height: "auto" }}
+              style={heroStickerImageStyle}
             />
           </motion.div>
         ))}
         <div
-          className="absolute inset-0 opacity-5"
-          style={PORTFOLIO_GRID_PATTERN_LIGHT_STYLE}
+          className="absolute inset-0 opacity-10"
+          style={PORTFOLIO_GRID_PATTERN_DARK_STYLE}
         />
       </motion.div>
 
@@ -184,7 +211,7 @@ export function PortfolioHeroSection() {
             }}
             className="relative"
           >
-            <h1 className={portfolioTypographyClassNames.heroDisplay}>
+            <h1 className={heroDisplayClassName}>
               {portfolioBrand.heroPrimaryHeading}
             </h1>
             <motion.div
@@ -205,7 +232,7 @@ export function PortfolioHeroSection() {
             }}
             className="relative -mt-4 text-right md:-mt-8"
           >
-            <h1 className={portfolioTypographyClassNames.heroDisplay}>
+            <h1 className={heroDisplayClassName}>
               {portfolioBrand.heroSecondaryHeading}
             </h1>
             <motion.div
@@ -226,12 +253,12 @@ export function PortfolioHeroSection() {
             }}
             className="relative mt-8 -rotate-2 md:mt-12"
           >
-            <p className="font-accent text-xl font-bold uppercase tracking-widest text-dark-gray md:text-2xl lg:text-3xl">
+            <p className="font-accent text-xl font-bold uppercase tracking-widest text-gray-200 md:text-2xl lg:text-3xl">
               {portfolioBrand.heroRole}
             </p>
             <div className="mt-2 flex items-center gap-4">
-              <div className="h-1 w-12 bg-black" />
-              <span className="font-body text-sm text-light-gray">
+              <div className="h-1 w-12 bg-white/70" />
+              <span className="font-body text-sm text-gray-400">
                 &amp; {portfolioBrand.heroSubtitle}
               </span>
             </div>
@@ -243,7 +270,7 @@ export function PortfolioHeroSection() {
             transition={{ delay: 0.8 }}
             className="mt-12 max-w-2xl md:mt-16"
           >
-            <p className={portfolioTypographyClassNames.heroLead}>
+            <p className={heroLeadClassName}>
               {typedHeroTagline}
               <motion.span
                 animate={{ opacity: [1, 0] }}
@@ -266,7 +293,7 @@ export function PortfolioHeroSection() {
             <MagneticActionButton
               type="button"
               onClick={() => scrollToSection("projects")}
-              className={portfolioButtonClassNames.hero}
+              className={heroActionClassName}
               magnetStrength={0.4}
             >
               <span className="flex items-center gap-3">
@@ -287,12 +314,12 @@ export function PortfolioHeroSection() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex h-10 w-6 justify-center rounded-full border-4 border-black pt-2"
+          className="flex h-10 w-6 justify-center rounded-full border-4 border-white/80 pt-2"
         >
           <motion.div
             animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="h-2 w-2 rounded-full bg-black"
+            className="h-2 w-2 rounded-full bg-electric-yellow"
           />
         </motion.div>
       </motion.div>

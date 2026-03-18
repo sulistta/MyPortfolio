@@ -11,8 +11,9 @@ import {
 } from "../portfolio-content";
 import { portfolioEntranceEase } from "../portfolio-motion";
 import {
-  PORTFOLIO_GRID_PATTERN_LIGHT_STYLE,
+  PORTFOLIO_GRID_PATTERN_DARK_STYLE,
   PORTFOLIO_SECTION_SCROLL_STYLE,
+  cn,
   portfolioButtonClassNames,
   portfolioLayoutClassNames,
   portfolioSurfaceClassNames,
@@ -107,13 +108,51 @@ const projectHeroStickerDecorations = [
   },
 ];
 
+const projectHeroStickerImageStyle = {
+  width: "100%",
+  height: "auto",
+  filter:
+    "drop-shadow(0 12px 20px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 18px rgba(250, 250, 250, 0.14))",
+} as const;
+
 export function ProjectsCatalogHeroSection() {
+  const projectHeroTitleClassName = cn(
+    portfolioTypographyClassNames.projectsDisplay,
+    "!text-white [text-shadow:0_8px_24px_rgba(0,0,0,0.45)]",
+  );
+  const projectHeroPrimaryActionClassName = cn(
+    portfolioButtonClassNames.primary,
+    "!border-white !bg-electric-yellow !text-black !shadow-[8px_8px_0px_rgba(250,250,250,0.18)] hover:!bg-white hover:!text-black",
+  );
+  const projectHeroSecondaryActionClassName = cn(
+    portfolioButtonClassNames.secondary,
+    "!border-white !bg-transparent !text-white hover:!bg-white hover:!text-black",
+  );
+  const projectHeroStatCardClassName = cn(
+    portfolioSurfaceClassNames.statCard,
+    "!border-white !bg-white/8 !shadow-[8px_8px_0px_rgba(250,250,250,0.14)] backdrop-blur-sm",
+  );
+  const projectHeroStatLabelClassName = cn(
+    portfolioTypographyClassNames.statLabel,
+    "!text-gray-300",
+  );
+
   return (
     <section
-      className="relative overflow-hidden bg-off-white"
+      className="relative overflow-hidden bg-ink-black"
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
-      <div className="absolute inset-0 opacity-5" style={PORTFOLIO_GRID_PATTERN_LIGHT_STYLE} />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 18% 18%, rgba(255, 0, 110, 0.22) 0%, transparent 34%), radial-gradient(circle at 84% 18%, rgba(0, 245, 255, 0.18) 0%, transparent 30%), radial-gradient(circle at 50% 82%, rgba(255, 233, 0, 0.14) 0%, transparent 28%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 opacity-10"
+        style={PORTFOLIO_GRID_PATTERN_DARK_STYLE}
+      />
       {projectHeroStickerDecorations.map((projectHeroSticker) => (
         <motion.div
           key={projectHeroSticker.src}
@@ -130,7 +169,7 @@ export function ProjectsCatalogHeroSection() {
             height={projectHeroSticker.height}
             sizes={projectHeroSticker.sizes}
             draggable={false}
-            style={{ width: "100%", height: "auto" }}
+            style={projectHeroStickerImageStyle}
           />
         </motion.div>
       ))}
@@ -143,8 +182,13 @@ export function ProjectsCatalogHeroSection() {
             transition={{ duration: 0.6, ease: portfolioEntranceEase }}
           >
             <div className={portfolioLayoutClassNames.kickerRow}>
-              <div className="h-1 w-16 bg-black" />
-              <span className={portfolioTypographyClassNames.kickerOnLight}>
+              <div className="h-1 w-16 bg-electric-yellow" />
+              <span
+                className={cn(
+                  portfolioTypographyClassNames.kickerOnLight,
+                  "!text-gray-400",
+                )}
+              >
                 {projectsPageHeroContent.kicker}
               </span>
             </div>
@@ -158,7 +202,7 @@ export function ProjectsCatalogHeroSection() {
                   delay: 0.15,
                   ease: portfolioEntranceEase,
                 }}
-                className={portfolioTypographyClassNames.projectsDisplay}
+                className={projectHeroTitleClassName}
               >
                 {projectsPageHeroContent.title}
               </motion.h1>
@@ -181,7 +225,7 @@ export function ProjectsCatalogHeroSection() {
               }}
               className="relative mt-3 text-right md:mt-4 lg:mt-6"
             >
-              <h1 className={portfolioTypographyClassNames.projectsDisplay}>
+              <h1 className={projectHeroTitleClassName}>
                 {projectsPageHeroContent.highlightedTitle}
               </h1>
               <motion.div
@@ -198,7 +242,7 @@ export function ProjectsCatalogHeroSection() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.55, duration: 0.45 }}
-            className="mt-12 max-w-2xl font-body text-lg leading-relaxed text-dark-gray md:text-xl"
+            className="mt-12 max-w-2xl font-body text-lg leading-relaxed text-gray-200 md:text-xl"
           >
             {projectsPageHeroContent.intro}
           </motion.p>
@@ -212,7 +256,7 @@ export function ProjectsCatalogHeroSection() {
             <MagneticActionButton
               type="button"
               onClick={() => scrollToSection("all-projects")}
-              className={`group shadow-brutal ${portfolioButtonClassNames.primary}`}
+              className={cn("group", projectHeroPrimaryActionClassName)}
               magnetStrength={0.35}
             >
               <span className="flex items-center gap-3">
@@ -224,7 +268,7 @@ export function ProjectsCatalogHeroSection() {
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Link
                 href="/#contact"
-                className={portfolioButtonClassNames.secondary}
+                className={projectHeroSecondaryActionClassName}
               >
                 {projectsPageHeroContent.secondaryActionLabel}
                 <ArrowUpRight className="h-5 w-5" />
@@ -243,16 +287,16 @@ export function ProjectsCatalogHeroSection() {
                   duration: 0.45,
                   ease: portfolioEntranceEase,
                 }}
-                className={portfolioSurfaceClassNames.statCard}
+                className={projectHeroStatCardClassName}
               >
                 <div
-                  className="mb-4 h-2 w-16 border-2 border-black"
+                  className="mb-4 h-2 w-16 border-2 border-white/70"
                   style={{ backgroundColor: projectHeroStat.accentColor }}
                 />
-                <p className="font-heading text-5xl text-ink-black">
+                <p className="font-heading text-5xl text-white">
                   {projectHeroStat.value}
                 </p>
-                <p className={portfolioTypographyClassNames.statLabel}>
+                <p className={projectHeroStatLabelClassName}>
                   {projectHeroStat.label}
                 </p>
               </motion.div>

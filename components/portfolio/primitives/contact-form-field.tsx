@@ -42,7 +42,11 @@ export function ContactFormField({
         animate={{
           y: shouldLiftLabel ? -28 : 0,
           scale: shouldLiftLabel ? 0.85 : 1,
-          color: isFieldFocused ? "#FF006E" : "#666666",
+          color: isFieldFocused
+            ? "#00F5FF"
+            : shouldLiftLabel
+              ? "#F5F7FB"
+              : "#8792A9",
         }}
         className="pointer-events-none absolute left-4 top-4 origin-left font-accent text-sm tracking-wider"
       >
@@ -61,7 +65,9 @@ export function ContactFormField({
           rows={fieldDefinition.rows ?? 5}
           className={portfolioSurfaceClassNames.textarea}
           style={{
-            boxShadow: isFieldFocused ? "8px 8px 0px #FF006E" : "4px 4px 0px #000",
+            boxShadow: isFieldFocused
+              ? "8px 8px 0px #FF006E"
+              : "6px 6px 0px rgba(245, 247, 251, 0.16)",
           }}
         />
       ) : (
@@ -76,7 +82,9 @@ export function ContactFormField({
           onBlur={onFieldBlur}
           className={portfolioSurfaceClassNames.input}
           style={{
-            boxShadow: isFieldFocused ? "8px 8px 0px #FF006E" : "4px 4px 0px #000",
+            boxShadow: isFieldFocused
+              ? "8px 8px 0px #FF006E"
+              : "6px 6px 0px rgba(245, 247, 251, 0.16)",
           }}
         />
       )}

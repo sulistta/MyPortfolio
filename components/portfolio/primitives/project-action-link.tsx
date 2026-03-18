@@ -27,6 +27,7 @@ export function ProjectActionLink({
   className,
 }: ProjectActionLinkProps) {
   const resolvedClassName = cn(
+    "inline-flex items-center justify-center backdrop-blur-sm",
     portfolioProjectActionLinkClassNames[surface][variant],
     className,
   );

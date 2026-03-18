@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
 import {
+  cn,
   portfolioSurfaceClassNames,
   portfolioTypographyClassNames,
 } from "../portfolio-styles";
@@ -80,10 +81,13 @@ export function FeaturedProjectCard({
             y: isCardHovered ? -12 : 0,
             boxShadow: isCardHovered
               ? `12px 12px 0px ${featuredProject.accentColor}`
-              : "8px 8px 0px #000",
+              : "8px 8px 0px rgba(245, 247, 251, 0.14)",
           }}
           transition={{ duration: 0.3 }}
-          className={`relative overflow-hidden ${portfolioSurfaceClassNames.panel}`}
+          className={cn(
+            "relative overflow-hidden border-white bg-[#10131c] shadow-[8px_8px_0px_rgba(245,247,251,0.14)]",
+            portfolioSurfaceClassNames.panel,
+          )}
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
@@ -105,7 +109,7 @@ export function FeaturedProjectCard({
             <motion.div
               animate={{ opacity: isCardHovered ? 0.9 : 0 }}
               transition={{ duration: 0.3 }}
-              className="absolute inset-0 flex items-center justify-center bg-black"
+              className="absolute inset-0 flex items-center justify-center bg-[rgba(6,8,15,0.88)] backdrop-blur-sm"
             >
               <div className="flex flex-wrap justify-center gap-4 px-6">
                 <ProjectActionLink
@@ -136,12 +140,20 @@ export function FeaturedProjectCard({
           <div className="p-6">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span
-                className={portfolioSurfaceClassNames.tag}
+                className={cn(
+                  portfolioSurfaceClassNames.tag,
+                  "border-white/60 text-white",
+                )}
                 style={{ backgroundColor: `${featuredProject.accentColor}20` }}
               >
                 {featuredProject.category}
               </span>
-              <span className={portfolioTypographyClassNames.metaLabel}>
+              <span
+                className={cn(
+                  portfolioTypographyClassNames.metaLabel,
+                  "text-gray-300",
+                )}
+              >
                 {featuredProject.year}
               </span>
             </div>
@@ -157,9 +169,12 @@ export function FeaturedProjectCard({
               {featuredProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className={portfolioSurfaceClassNames.tag}
+                  className={cn(
+                    portfolioSurfaceClassNames.tag,
+                    "border-white/60 text-white",
+                  )}
                   style={{
-                    backgroundColor: `${featuredProject.accentColor}20`,
+                    backgroundColor: `${featuredProject.accentColor}1f`,
                   }}
                 >
                   {technologyLabel}

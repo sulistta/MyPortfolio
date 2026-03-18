@@ -12,12 +12,11 @@ import {
 import {
   PORTFOLIO_SECTION_SCROLL_STYLE,
   portfolioLayoutClassNames,
-  portfolioSurfaceClassNames,
-  portfolioTypographyClassNames,
 } from "../portfolio-styles";
 import { AnimatedStatCounter } from "../primitives/animated-stat-counter";
 import { stickerAssetPaths } from "@/public/stickers";
 import Image from "next/image";
+
 function renderHighlightedParagraph(
   paragraphText: string,
   highlightText: string,
@@ -58,10 +57,12 @@ export function PortfolioAboutSection() {
     <section
       id="about"
       ref={aboutSectionReference}
-      className={portfolioLayoutClassNames.creamSection}
+      className="relative overflow-hidden bg-ink-black py-24 md:py-32 lg:py-40"
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,233,0,0.16),transparent_36%),radial-gradient(circle_at_bottom_left,rgba(0,245,255,0.14),transparent_42%)]" />
       <div className="absolute right-0 top-0 h-full w-1/3 -skew-x-12 translate-x-1/4 bg-electric-yellow/10" />
+      <div className="absolute left-0 top-16 h-40 w-40 -translate-x-1/3 rounded-full bg-hot-magenta/15 blur-3xl" />
 
       <div className={portfolioLayoutClassNames.contentContainer}>
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-20">
@@ -76,18 +77,20 @@ export function PortfolioAboutSection() {
               className="relative"
             >
               <div
-                className={`relative ${portfolioSurfaceClassNames.panelShadowLg} p-4`}
+                className="relative border-4 border-white bg-[#111111] p-4"
+                style={{ boxShadow: "12px 12px 0px rgba(250, 250, 250, 0.16)" }}
               >
                 <div className="relative aspect-[4/5] overflow-hidden bg-charcoal">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_45%)]" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="relative">
                       <motion.div
-                        className="h-48 w-48 rounded-full border-4 border-black bg-electric-yellow md:h-64 md:w-64"
+                        className="h-48 w-48 rounded-full border-4 border-white bg-electric-yellow md:h-64 md:w-64"
                         animate={{
                           boxShadow: [
-                            "8px 8px 0px #000",
+                            "8px 8px 0px rgba(250, 250, 250, 0.22)",
                             "12px 12px 0px #FF006E",
-                            "8px 8px 0px #000",
+                            "8px 8px 0px rgba(250, 250, 250, 0.22)",
                           ],
                         }}
                         transition={{ duration: 3, repeat: Infinity }}
@@ -122,7 +125,8 @@ export function PortfolioAboutSection() {
                   isAboutSectionVisible ? { scale: 1, rotate: -5 } : undefined
                 }
                 transition={{ delay: 0.5, duration: 0.5, type: "spring" }}
-                className="absolute -bottom-6 -right-6 border-4 border-black bg-hot-magenta px-6 py-3 text-white shadow-brutal"
+                className="absolute -bottom-6 -right-6 border-4 border-white bg-hot-magenta px-6 py-3 text-white"
+                style={{ boxShadow: "8px 8px 0px rgba(250, 250, 250, 0.16)" }}
               >
                 <span className="font-accent text-sm font-bold tracking-wider">
                   {portfolioBrand.availabilityLabel}
@@ -133,7 +137,7 @@ export function PortfolioAboutSection() {
 
           <div className="lg:col-span-7">
             <motion.h2
-              className={`mb-8 ${portfolioTypographyClassNames.lightSectionTitle}`}
+              className="mb-8 font-heading text-5xl text-white md:text-6xl lg:text-7xl"
             >
               {aboutSectionContent.heading
                 .split("")
@@ -163,12 +167,12 @@ export function PortfolioAboutSection() {
                   isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
                 }
                 transition={{ delay: 0.4, duration: 0.4 }}
-                className={portfolioTypographyClassNames.bodyCopy}
+                className="font-body text-lg leading-relaxed text-gray-300"
               >
                 {renderHighlightedParagraph(
                   aboutSectionContent.paragraphs[0],
                   aboutSectionContent.introHighlight,
-                  "bg-electric-yellow px-1 font-bold",
+                  "bg-electric-yellow px-1 font-bold text-black",
                 )}
               </motion.p>
 
@@ -178,12 +182,12 @@ export function PortfolioAboutSection() {
                   isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
                 }
                 transition={{ delay: 0.5, duration: 0.4 }}
-                className={portfolioTypographyClassNames.bodyCopy}
+                className="font-body text-lg leading-relaxed text-gray-300"
               >
                 {renderHighlightedParagraph(
                   aboutSectionContent.paragraphs[1],
                   aboutSectionContent.experienceHighlight,
-                  "border-b-4 border-hot-magenta font-bold",
+                  "border-b-4 border-hot-magenta font-bold text-white",
                 )}
               </motion.p>
 
@@ -193,7 +197,7 @@ export function PortfolioAboutSection() {
                   isAboutSectionVisible ? { y: 0, opacity: 1 } : undefined
                 }
                 transition={{ delay: 0.6, duration: 0.4 }}
-                className={portfolioTypographyClassNames.bodyCopy}
+                className="font-body text-lg leading-relaxed text-gray-300"
               >
                 {aboutSectionContent.paragraphs[2]}
               </motion.p>
@@ -208,16 +212,19 @@ export function PortfolioAboutSection() {
               {careerStats.map((careerStat) => (
                 <motion.div
                   key={careerStat.label}
-                  whileHover={{ y: -5, boxShadow: "8px 8px 0px #000" }}
-                  className={portfolioSurfaceClassNames.statCardCompact}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "8px 8px 0px rgba(255, 0, 110, 0.4)",
+                  }}
+                  className="border-4 border-white bg-[#101010] p-4 shadow-[8px_8px_0_0_rgba(250,250,250,0.14)] transition-all duration-200 md:p-6"
                 >
-                  <div className="font-heading text-3xl text-ink-black md:text-4xl lg:text-5xl">
+                  <div className="font-heading text-3xl text-white md:text-4xl lg:text-5xl">
                     <AnimatedStatCounter
                       value={careerStat.value}
                       suffix={careerStat.suffix}
                     />
                   </div>
-                  <div className={portfolioTypographyClassNames.statLabel}>
+                  <div className="font-accent text-xs tracking-wider text-gray-400 md:text-sm">
                     {careerStat.label}
                   </div>
                 </motion.div>
