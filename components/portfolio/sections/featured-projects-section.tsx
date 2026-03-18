@@ -36,11 +36,11 @@ export function FeaturedProjectsSection() {
     <section
       id="projects"
       ref={featuredProjectsSectionReference}
-      className={portfolioLayoutClassNames.darkSection}
+      className={`${portfolioLayoutClassNames.darkSection} bg-ink-black`}
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-14"
         style={{ y: backgroundGradientOffset }}
       >
         <div

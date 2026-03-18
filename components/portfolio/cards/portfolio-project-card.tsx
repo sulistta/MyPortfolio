@@ -5,8 +5,6 @@ import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
 import {
   cn,
-  portfolioSurfaceClassNames,
-  portfolioTypographyClassNames,
 } from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
@@ -111,18 +109,22 @@ export function PortfolioProjectCard({
             y: isCardHovered ? -10 : 0,
             boxShadow: isCardHovered
               ? `12px 12px 0px ${portfolioProject.accentColor}`
-              : "8px 8px 0px rgba(245, 247, 251, 0.14)",
+              : "8px 8px 0px #000",
           }}
           transition={{ duration: 0.25 }}
-          className={cn(
-            "relative overflow-hidden border-white bg-[#10131c] shadow-[8px_8px_0px_rgba(245,247,251,0.14)]",
-            portfolioSurfaceClassNames.panel,
-          )}
+          className="relative overflow-hidden border-4 border-black bg-off-white shadow-brutal"
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
             style={{ backgroundColor: portfolioProject.backgroundColor }}
           >
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(6,8,15,0.18) 0%, rgba(6,8,15,0.36) 100%)",
+              }}
+            />
             <div
               className="absolute inset-0 opacity-20"
               style={{
@@ -135,14 +137,14 @@ export function PortfolioProjectCard({
             <div className="absolute left-4 top-4 flex flex-wrap gap-2">
               <span
                 className={cn(
-                  portfolioSurfaceClassNames.badge,
+                  "border-4 px-3 py-1 font-accent text-xs tracking-wider",
                   "border-white bg-[rgba(6,8,15,0.82)] text-white backdrop-blur-sm",
                 )}
               >
                 {portfolioProject.category}
               </span>
               <span
-                className={cn(portfolioSurfaceClassNames.badge, "border-white")}
+                className="border-4 border-white px-3 py-1 font-accent text-xs tracking-wider"
                 style={{
                   backgroundColor: portfolioProject.accentColor,
                   color: getContrastingTextColor(portfolioProject.accentColor),
@@ -171,13 +173,13 @@ export function PortfolioProjectCard({
           </div>
 
           <div className="p-6">
-            <h3 className={`mb-2 ${portfolioTypographyClassNames.cardTitle}`}>
+            <h3 className="mb-2 font-heading text-3xl text-ink-black md:text-3xl">
               {portfolioProject.title}
             </h3>
-            <p className={`mb-4 ${portfolioTypographyClassNames.cardSummary}`}>
+            <p className="mb-4 font-body text-sm leading-relaxed text-light-gray">
               {portfolioProject.summary}
             </p>
-            <p className={portfolioTypographyClassNames.cardDescription}>
+            <p className="font-body text-sm leading-relaxed text-dark-gray">
               {portfolioProject.description}
             </p>
 
@@ -185,10 +187,7 @@ export function PortfolioProjectCard({
               {portfolioProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className={cn(
-                    portfolioSurfaceClassNames.tag,
-                    "border-white/60 text-white",
-                  )}
+                  className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider text-black"
                   style={{
                     backgroundColor: `${portfolioProject.accentColor}1f`,
                   }}
@@ -224,7 +223,7 @@ export function PortfolioProjectCard({
           </div>
 
           <div
-            className={portfolioSurfaceClassNames.accentCorner}
+            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
             style={{
               borderTopColor: portfolioProject.accentColor,
               borderLeftColor: "transparent",

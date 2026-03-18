@@ -135,11 +135,11 @@ export const portfolioButtonClassNames = {
 export const portfolioProjectActionLinkClassNames = {
   dark: {
     primary:
-      "border-4 border-theme-border bg-theme-text px-4 py-2 font-accent text-sm font-bold tracking-wider text-black transition-colors hover:bg-electric-yellow hover:text-black",
+      "border-4 border-black bg-black px-4 py-2 font-accent text-sm font-bold tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black",
     secondary:
-      "border-4 border-theme-border bg-transparent px-4 py-2 font-accent text-sm font-bold tracking-wider text-theme-text transition-colors hover:bg-theme-text hover:text-black",
+      "border-4 border-black bg-transparent px-4 py-2 font-accent text-sm font-bold tracking-wider text-black transition-colors hover:bg-black hover:text-white",
     accent:
-      "border-4 border-theme-border bg-hot-magenta px-4 py-2 font-accent text-sm font-bold tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black",
+      "border-4 border-black bg-hot-magenta px-4 py-2 font-accent text-sm font-bold tracking-wider text-white transition-colors hover:bg-electric-yellow hover:text-black",
   },
   light: {
     primary:

@@ -5,8 +5,6 @@ import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
 import {
   cn,
-  portfolioSurfaceClassNames,
-  portfolioTypographyClassNames,
 } from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
@@ -81,18 +79,22 @@ export function FeaturedProjectCard({
             y: isCardHovered ? -12 : 0,
             boxShadow: isCardHovered
               ? `12px 12px 0px ${featuredProject.accentColor}`
-              : "8px 8px 0px rgba(245, 247, 251, 0.14)",
+              : "8px 8px 0px #000",
           }}
           transition={{ duration: 0.3 }}
-          className={cn(
-            "relative overflow-hidden border-white bg-[#10131c] shadow-[8px_8px_0px_rgba(245,247,251,0.14)]",
-            portfolioSurfaceClassNames.panel,
-          )}
+          className="relative overflow-hidden border-4 border-black bg-off-white shadow-brutal"
         >
           <div
             className="relative h-64 overflow-hidden md:h-80"
             style={{ backgroundColor: featuredProject.backgroundColor }}
           >
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(6,8,15,0.18) 0%, rgba(6,8,15,0.36) 100%)",
+              }}
+            />
             <motion.div
               animate={{ scale: isCardHovered ? 1.1 : 1 }}
               transition={{ duration: 0.5 }}
@@ -141,38 +143,27 @@ export function FeaturedProjectCard({
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span
                 className={cn(
-                  portfolioSurfaceClassNames.tag,
-                  "border-white/60 text-white",
+                  "border-2 border-black px-3 py-1 font-accent text-xs tracking-wider text-black",
                 )}
                 style={{ backgroundColor: `${featuredProject.accentColor}20` }}
               >
                 {featuredProject.category}
               </span>
-              <span
-                className={cn(
-                  portfolioTypographyClassNames.metaLabel,
-                  "text-gray-300",
-                )}
-              >
+              <span className="font-accent text-xs tracking-wider text-dark-gray">
                 {featuredProject.year}
               </span>
             </div>
-            <h3
-              className={`mb-2 ${portfolioTypographyClassNames.featuredCardTitle}`}
-            >
+            <h3 className="mb-2 font-heading text-2xl text-ink-black md:text-3xl">
               {featuredProject.title}
             </h3>
-            <p className={`mb-4 ${portfolioTypographyClassNames.cardSummary}`}>
+            <p className="mb-4 font-body text-sm leading-relaxed text-light-gray">
               {featuredProject.summary}
             </p>
             <div className="flex flex-wrap gap-2">
               {featuredProject.technologies.map((technologyLabel) => (
                 <span
                   key={technologyLabel}
-                  className={cn(
-                    portfolioSurfaceClassNames.tag,
-                    "border-white/60 text-white",
-                  )}
+                  className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider text-black"
                   style={{
                     backgroundColor: `${featuredProject.accentColor}1f`,
                   }}
@@ -181,13 +172,13 @@ export function FeaturedProjectCard({
                 </span>
               ))}
             </div>
-            <p className={`mt-4 ${portfolioTypographyClassNames.cardDescription}`}>
+            <p className="mt-4 font-body text-sm leading-relaxed text-dark-gray">
               {featuredProject.description}
             </p>
           </div>
 
           <div
-            className={portfolioSurfaceClassNames.accentCorner}
+            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
             style={{
               borderTopColor: featuredProject.accentColor,
               borderLeftColor: "transparent",
