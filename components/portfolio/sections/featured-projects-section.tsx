@@ -16,7 +16,6 @@ import {
   featuredProjectLayoutClassNames,
   portfolioButtonClassNames,
   portfolioLayoutClassNames,
-  portfolioTypographyClassNames,
 } from "../portfolio-styles";
 import { FeaturedProjectCard } from "../cards/featured-project-card";
 
@@ -104,7 +103,7 @@ export function FeaturedProjectsSection() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
+              className={portfolioButtonClassNames.darkGhost}
             >
               {featuredProjectsSectionContent.secondaryActionLabel}
               <ArrowUp className="h-5 w-5 rotate-90" />

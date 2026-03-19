@@ -10,6 +10,7 @@ import {
   skillCardEntryRotations,
 } from "../portfolio-motion";
 import {
+  PORTFOLIO_SKILLS_PATTERN_STYLE,
   PORTFOLIO_SECTION_SCROLL_STYLE,
   portfolioLayoutClassNames,
   portfolioTypographyClassNames,
@@ -31,13 +32,7 @@ export function TechnicalSkillsSection() {
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,0,110,0.16),transparent_34%),radial-gradient(circle_at_bottom_left,rgba(0,245,255,0.12),transparent_40%)]" />
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.14) 2px, transparent 2px, transparent 20px)",
-        }}
-      />
+      <div className="absolute inset-0 opacity-20" style={PORTFOLIO_SKILLS_PATTERN_STYLE} />
 
       <div className={portfolioLayoutClassNames.contentContainer}>
         <motion.div

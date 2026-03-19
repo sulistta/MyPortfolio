@@ -19,7 +19,7 @@ export type SkillHighlight = {
   proficiency: number;
 };
 
-export type ProjectCategory =
+type ProjectCategory =
   | "Web Experience"
   | "Creative Coding"
   | "Dashboard"
@@ -32,7 +32,7 @@ export type ProjectPreviewVariant =
   | "signal"
   | "stack";
 
-export type ProjectAvailability = "live" | "private" | "concept";
+type ProjectAvailability = "live" | "private" | "concept";
 
 export type FeaturedProjectLayout = "lead" | "support" | "centerpiece";
 

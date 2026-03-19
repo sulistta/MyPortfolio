@@ -3,9 +3,7 @@ import { Code2, Eye, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
-import {
-  cn,
-} from "../portfolio-styles";
+import { portfolioSurfaceClassNames } from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
 import { PortfolioProjectPreviewArtwork } from "../primitives/portfolio-project-preview-artwork";
@@ -136,10 +134,7 @@ export function PortfolioProjectCard({
 
             <div className="absolute left-4 top-4 flex flex-wrap gap-2">
               <span
-                className={cn(
-                  "border-4 px-3 py-1 font-accent text-xs tracking-wider",
-                  "border-white bg-[rgba(6,8,15,0.82)] text-white backdrop-blur-sm",
-                )}
+                className="border-4 border-white bg-[rgba(6,8,15,0.82)] px-3 py-1 font-accent text-xs tracking-wider text-white backdrop-blur-sm"
               >
                 {portfolioProject.category}
               </span>
@@ -223,7 +218,7 @@ export function PortfolioProjectCard({
           </div>
 
           <div
-            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
+            className={portfolioSurfaceClassNames.accentCorner}
             style={{
               borderTopColor: portfolioProject.accentColor,
               borderLeftColor: "transparent",

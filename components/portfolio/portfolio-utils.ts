@@ -1,7 +1,3 @@
-export {
-  PORTFOLIO_CONTAINER_CLASS_NAME,
-  PORTFOLIO_SECTION_SCROLL_STYLE,
-} from "./portfolio-styles";
 import { PORTFOLIO_FIXED_HEADER_OFFSET } from "./portfolio-styles";
 
 export function scrollToSection(sectionId: string) {

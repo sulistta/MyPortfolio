@@ -11,7 +11,9 @@ import {
   PORTFOLIO_GRID_PATTERN_DARK_STYLE,
   PORTFOLIO_SECTION_SCROLL_STYLE,
   cn,
+  portfolioButtonClassNames,
   portfolioLayoutClassNames,
+  portfolioSurfaceClassNames,
   portfolioTypographyClassNames,
 } from "../portfolio-styles";
 import { PortfolioProjectCard } from "../cards/portfolio-project-card";
@@ -84,7 +86,7 @@ export function ProjectsCatalogSection() {
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.96 }}
                 className={cn(
-                  "border-4 px-4 py-2 font-accent text-sm font-bold tracking-wider transition-all duration-200",
+                  portfolioButtonClassNames.filter,
                   isFilterActive
                     ? "border-white text-black"
                     : "border-white bg-white/5 text-white hover:bg-white hover:text-black",
@@ -121,13 +123,13 @@ export function ProjectsCatalogSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border-4 border-white bg-[#101010] p-6 text-center shadow-[8px_8px_0_0_rgba(250,250,250,0.16)]"
+            className={portfolioSurfaceClassNames.emptyState}
           >
             <div className="mx-auto mb-4 h-2 w-20 bg-gradient-to-r from-electric-yellow via-hot-magenta to-cyan-blast" />
-            <p className="font-heading text-3xl text-white md:text-4xl">
+            <p className="font-heading text-3xl text-theme-text md:text-4xl">
               {projectsCatalogSectionContent.emptyStateTitle}
             </p>
-            <p className="mt-4 font-body text-lg text-gray-300">
+            <p className="mt-4 font-body text-lg text-theme-text-muted">
               {projectsCatalogSectionContent.emptyStateDescription}
             </p>
           </motion.div>

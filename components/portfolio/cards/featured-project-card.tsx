@@ -3,9 +3,7 @@ import { Code2, Eye, FileText } from "lucide-react";
 import { useRef, useState } from "react";
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { portfolioEntranceEase, portfolioRevealViewport } from "../portfolio-motion";
-import {
-  cn,
-} from "../portfolio-styles";
+import { portfolioSurfaceClassNames } from "../portfolio-styles";
 import type { PortfolioProject } from "../portfolio-types";
 import { ProjectActionLink } from "../primitives/project-action-link";
 import { PortfolioProjectPreviewArtwork } from "../primitives/portfolio-project-preview-artwork";
@@ -142,9 +140,7 @@ export function FeaturedProjectCard({
           <div className="p-6">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <span
-                className={cn(
-                  "border-2 border-black px-3 py-1 font-accent text-xs tracking-wider text-black",
-                )}
+                className="border-2 border-black px-3 py-1 font-accent text-xs tracking-wider text-black"
                 style={{ backgroundColor: `${featuredProject.accentColor}20` }}
               >
                 {featuredProject.category}
@@ -178,7 +174,7 @@ export function FeaturedProjectCard({
           </div>
 
           <div
-            className="absolute right-0 top-0 h-0 w-0 border-l-[60px] border-t-[60px]"
+            className={portfolioSurfaceClassNames.accentCorner}
             style={{
               borderTopColor: featuredProject.accentColor,
               borderLeftColor: "transparent",
