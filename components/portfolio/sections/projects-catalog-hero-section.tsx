@@ -116,8 +116,10 @@ const projectHeroStickerImageStyle = {
 } as const;
 
 export function ProjectsCatalogHeroSection() {
-  const projectHeroTitleClassName =
-    "font-heading text-[20vw] leading-[0.85] tracking-tight text-white [text-shadow:0_8px_24px_rgba(0,0,0,0.45)] md:text-[12vw] lg:text-[10vw]";
+  const projectHeroTitleClassName = cn(
+    portfolioTypographyClassNames.projectsDisplay,
+    "[text-shadow:0_8px_24px_rgba(0,0,0,0.45)]",
+  );
   const projectHeroPrimaryActionClassName = cn(
     portfolioButtonClassNames.primary,
     "!border-white !bg-electric-yellow !text-black !shadow-[8px_8px_0px_rgba(250,250,250,0.18)] hover:!bg-white hover:!text-black",

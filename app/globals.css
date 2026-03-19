@@ -84,6 +84,58 @@
 }
 
 @layer utilities {
+  .bg-theme-base {
+    background-color: var(--color-theme-base);
+  }
+
+  .bg-theme-surface {
+    background-color: var(--color-theme-surface);
+  }
+
+  .bg-theme-surface-alt {
+    background-color: var(--color-theme-surface-alt);
+  }
+
+  .bg-theme-card {
+    background-color: var(--color-theme-card);
+  }
+
+  .bg-theme-card-alt {
+    background-color: var(--color-theme-card-alt);
+  }
+
+  .bg-theme-input {
+    background-color: var(--color-theme-input);
+  }
+
+  .bg-theme-chip {
+    background-color: var(--color-theme-chip);
+  }
+
+  .bg-theme-text {
+    background-color: var(--color-theme-text);
+  }
+
+  .text-theme-text {
+    color: var(--color-theme-text);
+  }
+
+  .text-theme-text-muted {
+    color: var(--color-theme-text-muted);
+  }
+
+  .text-theme-text-subtle {
+    color: var(--color-theme-text-subtle);
+  }
+
+  .border-theme-border {
+    border-color: var(--color-theme-border);
+  }
+
+  .border-theme-border-muted {
+    border-color: var(--color-theme-border-muted);
+  }
+
   .noise-overlay::before {
     content: "";
     position: fixed;
