@@ -37,7 +37,7 @@ export function ProjectsCatalogSection() {
     <section
       id="all-projects"
       ref={catalogSectionReference}
-      className={portfolioLayoutClassNames.darkSection}
+      className="relative overflow-hidden bg-ink-black py-24 md:py-32 lg:py-40"
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
       <div

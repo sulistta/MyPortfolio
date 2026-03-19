@@ -125,9 +125,9 @@ export const portfolioButtonClassNames = {
   submit:
     "w-full animate-pulse-glow border-4 border-theme-border bg-hot-magenta py-5 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-theme-text hover:text-black",
   darkGhost:
-    "inline-flex items-center gap-3 border-4 border-theme-border bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-theme-text transition-colors duration-200 hover:bg-theme-text hover:text-black",
+    "inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black",
   footerGhost:
-    "group border-4 border-theme-border bg-transparent px-6 py-3 text-theme-text transition-colors duration-200 hover:bg-theme-text hover:text-black",
+    "group border-4 border-white bg-transparent px-6 py-3 text-white transition-colors duration-200 hover:bg-white hover:text-black",
   filter:
     "border-4 border-theme-border bg-theme-card px-4 py-2 font-accent text-sm font-bold tracking-wider text-theme-text transition-colors",
 } as const;

@@ -5,7 +5,7 @@ import { ProjectsCatalogHeroSection } from "../sections/projects-catalog-hero-se
 import { ProjectsCatalogSection } from "../sections/projects-catalog-section";
 import { PageScrollProgressBar } from "../primitives/page-scroll-progress-bar";
 import { PortfolioCursorTrail } from "../primitives/portfolio-cursor-trail";
-import { portfolioLayoutClassNames } from "../portfolio-styles";
+import { cn, portfolioLayoutClassNames } from "../portfolio-styles";
 
 export function PortfolioProjectsShell() {
   return (
@@ -13,7 +13,7 @@ export function PortfolioProjectsShell() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={portfolioLayoutClassNames.shell}
+      className={cn(portfolioLayoutClassNames.shell, "bg-ink-black")}
     >
       <PortfolioCursorTrail />
       <PageScrollProgressBar />

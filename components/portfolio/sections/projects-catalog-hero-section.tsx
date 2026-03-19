@@ -116,10 +116,8 @@ const projectHeroStickerImageStyle = {
 } as const;
 
 export function ProjectsCatalogHeroSection() {
-  const projectHeroTitleClassName = cn(
-    portfolioTypographyClassNames.projectsDisplay,
-    "!text-white [text-shadow:0_8px_24px_rgba(0,0,0,0.45)]",
-  );
+  const projectHeroTitleClassName =
+    "font-heading text-[20vw] leading-[0.85] tracking-tight text-white [text-shadow:0_8px_24px_rgba(0,0,0,0.45)] md:text-[12vw] lg:text-[10vw]";
   const projectHeroPrimaryActionClassName = cn(
     portfolioButtonClassNames.primary,
     "!border-white !bg-electric-yellow !text-black !shadow-[8px_8px_0px_rgba(250,250,250,0.18)] hover:!bg-white hover:!text-black",
@@ -139,7 +137,7 @@ export function ProjectsCatalogHeroSection() {
 
   return (
     <section
-      className="relative overflow-hidden bg-ink-black"
+      className="relative overflow-hidden bg-ink-black text-white"
       style={PORTFOLIO_SECTION_SCROLL_STYLE}
     >
       <div

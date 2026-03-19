@@ -64,11 +64,11 @@ export function FeaturedProjectsSection() {
         >
           <div className={portfolioLayoutClassNames.kickerRow}>
             <div className="h-1 w-16 bg-electric-yellow" />
-            <span className={portfolioTypographyClassNames.kickerOnDark}>
+            <span className="font-accent text-sm tracking-[0.2em] text-gray-300">
               {featuredProjectsSectionContent.kicker}
             </span>
           </div>
-          <h2 className={portfolioTypographyClassNames.darkSectionTitle}>
+          <h2 className="font-heading text-5xl text-white md:text-6xl lg:text-8xl">
             {featuredProjectsSectionContent.title}
             <span className="block text-electric-yellow">
               {featuredProjectsSectionContent.highlightedTitle}
@@ -104,7 +104,7 @@ export function FeaturedProjectsSection() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/projects"
-              className={portfolioButtonClassNames.darkGhost}
+              className="inline-flex items-center gap-3 border-4 border-white bg-transparent px-8 py-4 font-accent text-lg font-bold tracking-wider text-white transition-colors duration-200 hover:bg-white hover:text-black"
             >
               {featuredProjectsSectionContent.secondaryActionLabel}
               <ArrowUp className="h-5 w-5 rotate-90" />
